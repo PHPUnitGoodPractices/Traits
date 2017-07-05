@@ -1,0 +1,17 @@
+{
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "mi-schi/phpmd-extension": "^4.2",
+        "friendsofphp/php-cs-fixer": "^2.3",
+        "phpmd/phpmd": "^2.4.3"
+    },
+    "conflict": {
+        "hhvm": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
