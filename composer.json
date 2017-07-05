@@ -1,0 +1,31 @@
+{
+    "name": "phpunitgoodpractices/phpunit-good-practices",
+    "type": "library",
+    "description": "Highly opinionated PHPUnit good practices enforcer.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dariusz Rumiński",
+            "email": "dariusz.ruminski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3.6 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.35 || ^5.0"
+    },
+    "conflict": {
+        "hhvm": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": { "PHPUnitGoodPractices\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "PHPUnitGoodPractices\\Tests\\": "tests/" }
+    }
+}
