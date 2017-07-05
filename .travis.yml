@@ -1,0 +1,50 @@
+sudo: false
+
+git:
+    depth: 1
+
+cache:
+    directories:
+        - $HOME/.composer
+
+language: php
+
+php:
+    - 5.5
+    - 5.6
+    - 7.0
+    - 7.1
+    - nightly
+
+env:
+    global:
+        - DEFAULT_COMPOSER_FLAGS="--no-interaction --no-progress"
+
+before_install:
+    # turn off XDebug
+    - phpenv config-rm xdebug.ini || return 0
+
+    # Composer: boost installation
+    - composer global show -ND 2>&1 | grep "hirak/prestissimo" || travis_retry composer global require $DEFAULT_COMPOSER_FLAGS hirak/prestissimo
+
+install: skip
+
+script:
+    - ./run-tests.sh 4.8.35 || travis_terminate 1
+    - ./run-tests.sh ~5.4.0 || travis_terminate 1
+    - ./run-tests.sh ~5.5.0 || travis_terminate 1
+    - ./run-tests.sh ~5.6.0 || travis_terminate 1
+    - ./run-tests.sh ~5.7.0 || travis_terminate 1
+
+jobs:
+    include:
+        -
+            stage: Static Code Analysis
+            php: 7.1
+            install:
+                - travis_retry composer update -d dev-tools $DEFAULT_COMPOSER_FLAGS
+                - composer info -d dev-tools -D | sort
+            script:
+                - ./check_trailing_spaces.sh || travis_terminate 1
+                - ./dev-tools/vendor/bin/phpmd src,tests text phpmd.xml || travis_terminate 1
+                - ./dev-tools/vendor/bin/php-cs-fixer fix --diff --dry-run -v || travis_terminate 1
