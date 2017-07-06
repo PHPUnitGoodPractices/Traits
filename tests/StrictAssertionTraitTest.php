@@ -11,6 +11,7 @@
 
 namespace PHPUnitGoodPractices\Tests;
 
+use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\StrictAssertionTrait;
 
@@ -41,9 +42,9 @@ final class StrictAssertionTraitTest extends TestCase
         $data = 5;
 
         if (is_callable(array($this, 'expectException'))) {
-            $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+            $this->expectException(Warning::class);
         } else {
-            $this->setExpectedException(\PHPUnit_Framework_Error_Warning::class);
+            $this->setExpectedException(Warning::class);
         }
 
         $this->assertEquals($data, $data);

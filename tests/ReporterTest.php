@@ -11,6 +11,7 @@
 
 namespace PHPUnitGoodPractices\Tests;
 
+use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Reporter;
 
@@ -31,10 +32,10 @@ final class ReporterTest extends TestCase
         $expectedMessage = "PHPUnit good practice has been abused.\nFoo.";
 
         if (is_callable(array($this, 'expectException'))) {
-            $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+            $this->expectException(Warning::class);
             $this->expectExceptionMessage($expectedMessage);
         } else {
-            $this->setExpectedException(\PHPUnit_Framework_Error_Warning::class, $expectedMessage);
+            $this->setExpectedException(Warning::class, $expectedMessage);
         }
 
         Reporter::report('Foo.');
@@ -47,10 +48,10 @@ final class ReporterTest extends TestCase
         $expectedMessage = 'Foo.';
 
         if (is_callable(array($this, 'expectException'))) {
-            $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+            $this->expectException(Warning::class);
             $this->expectExceptionMessage($expectedMessage);
         } else {
-            $this->setExpectedException(\PHPUnit_Framework_Error_Warning::class, $expectedMessage);
+            $this->setExpectedException(Warning::class, $expectedMessage);
         }
 
         Reporter::report('Foo.');
@@ -75,9 +76,9 @@ final class ReporterTest extends TestCase
 
         Reporter::clearCustomReporter();
         if (is_callable(array($this, 'expectException'))) {
-            $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+            $this->expectException(Warning::class);
         } else {
-            $this->setExpectedException(\PHPUnit_Framework_Error_Warning::class);
+            $this->setExpectedException(Warning::class);
         }
         Reporter::report('Foo.');
     }
