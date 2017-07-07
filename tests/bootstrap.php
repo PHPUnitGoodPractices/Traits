@@ -9,12 +9,26 @@
  * with this source code in the file LICENSE.
  */
 
+if (!class_exists('PHPUnit\Framework\Error\Warning')) {
+    class_alias('PHPUnit_Framework_Error_Warning', 'PHPUnit\Framework\Error\Warning');
+}
+
 if (!class_exists('PHPUnit\Framework\TestCase')) {
     class_alias('PHPUnit_Framework_TestCase', 'PHPUnit\Framework\TestCase');
 }
 
-if (!class_exists('PHPUnit\Framework\Error\Warning')) {
-    class_alias('PHPUnit_Framework_Error_Warning', 'PHPUnit\Framework\Error\Warning');
+if (!class_exists('PHPUnit\Runner\Version')) {
+    class_alias('PHPUnit_Runner_Version', 'PHPUnit\Runner\Version');
+}
+
+if (
+    PHP_VERSION_ID >= 70200 && '4.0' === PHPUnit\Runner\Version::series()
+) {
+    die(sprintf(
+        "\e[45mPHPUnit %s: Is not compatible with PHP %s.\e[0m",
+        PHPUnit\Runner\Version::id(),
+        PHP_VERSION
+    ));
 }
 
 require __DIR__.'/../vendor/autoload.php';
