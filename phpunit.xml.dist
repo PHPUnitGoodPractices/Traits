@@ -8,9 +8,9 @@
     bootstrap="./tests/bootstrap.php"
     colors="true"
     columns="max"
-    convertErrorsToExceptions="false"
-    convertNoticesToExceptions="false"
-    convertWarningsToExceptions="false"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
 >
