@@ -22,7 +22,7 @@ if (!class_exists('PHPUnit\Runner\Version')) {
 }
 
 if (
-    PHP_VERSION_ID >= 70200 && '4.0' === PHPUnit\Runner\Version::series()
+    PHP_VERSION_ID >= 70200 && version_compare(PHPUnit\Runner\Version::id(), '4.1') < 0
 ) {
     die(sprintf(
         "\e[45mPHPUnit %s: Is not compatible with PHP %s.\e[0m",
