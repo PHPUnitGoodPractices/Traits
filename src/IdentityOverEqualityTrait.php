@@ -25,7 +25,7 @@ trait IdentityOverEqualityTrait
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
 
-        // internally, PHPUnit calls `assertEquals` instead of `assertSame` internally, we allow that
+        // sometimes, PHPUnit calls `assertEquals` instead of `assertSame` internally, we allow that
         if ('assertSame' !== $trace[1]['function']) {
             Reporter::report('Use `->assertSame()` instead of `->assertEquals()`.');
         }
@@ -37,7 +37,7 @@ trait IdentityOverEqualityTrait
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
 
-        // internally, PHPUnit calls `assertEquals` instead of `assertSame` internally, we allow that
+        // sometimes, PHPUnit calls `assertEquals` instead of `assertSame` internally, we allow that
         if ('assertNotSame' !== $trace[1]['function']) {
             Reporter::report('Use `->assertNotSame()` instead of `->assertNotEquals()`.');
         }
