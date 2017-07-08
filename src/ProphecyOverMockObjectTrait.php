@@ -1,0 +1,22 @@
+<?php
+
+/*
+ * This file is part of PHPUnit Good Practices.
+ *
+ * (c) Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+namespace PHPUnitGoodPractices;
+
+trait ProphecyOverMockObjectTrait
+{
+    protected function getMockObjectGenerator()
+    {
+        // TODO: requires 4.5
+        PHPUnitGoodPractices_Reporter::report("PHPUnit good practice has been abused.\nUse `Prophecy` instead of basic `MockObject`.");
+        return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+    }
+}
