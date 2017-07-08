@@ -22,6 +22,15 @@ final class StrictAssertionTraitTest extends TestCase
 {
     use StrictAssertionTrait;
 
+   public function expectException($exception)
+    {
+        if (is_callable(array('parent', 'expectException'))) {
+            parent::expectException($exception);
+        } else {
+            $this->setExpectedException($exception);
+        }
+    }
+
     public function testAssertSameWorks()
     {
         $data = 5;
@@ -41,11 +50,7 @@ final class StrictAssertionTraitTest extends TestCase
     {
         $data = 5;
 
-        if (is_callable(array($this, 'expectException'))) {
-            $this->expectException(Warning::class);
-        } else {
-            $this->setExpectedException(Warning::class);
-        }
+        $this->expectException(Warning::class);
 
         $this->assertEquals($data, $data);
     }
