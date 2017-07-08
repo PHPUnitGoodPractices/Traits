@@ -30,11 +30,26 @@ before_install:
 install: skip
 
 script:
-    - ./run-tests.sh 4.8.35 || travis_terminate 1
+    - ./run-tests.sh ~4.0.0 || travis_terminate 1
+    - ./run-tests.sh ~4.1.0 || travis_terminate 1
+    - ./run-tests.sh ~4.2.0 || travis_terminate 1
+    - ./run-tests.sh ~4.3.0 || travis_terminate 1
+    - ./run-tests.sh ~4.4.0 || travis_terminate 1
+    - ./run-tests.sh ~4.5.0 || travis_terminate 1
+    - ./run-tests.sh ~4.6.0 || travis_terminate 1
+    - ./run-tests.sh ~4.7.0 || travis_terminate 1
+    - ./run-tests.sh ~4.8.0 || travis_terminate 1
+    - ./run-tests.sh ~5.0.0 || travis_terminate 1
+    - ./run-tests.sh ~5.1.0 || travis_terminate 1
+    - ./run-tests.sh ~5.2.0 || travis_terminate 1
+    - ./run-tests.sh ~5.3.0 || travis_terminate 1
     - ./run-tests.sh ~5.4.0 || travis_terminate 1
     - ./run-tests.sh ~5.5.0 || travis_terminate 1
     - ./run-tests.sh ~5.6.0 || travis_terminate 1
     - ./run-tests.sh ~5.7.0 || travis_terminate 1
+    - ./run-tests.sh ~6.0.0 || travis_terminate 1
+    - ./run-tests.sh ~6.1.0 || travis_terminate 1
+    - ./run-tests.sh ~6.2.0 || travis_terminate 1
 
 jobs:
     include:

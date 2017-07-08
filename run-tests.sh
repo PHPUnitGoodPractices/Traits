@@ -12,7 +12,7 @@ fi
 
 echo -e "\e[46m§ Trying to execute tests under PHPUnit ${PHPUNIT}.\e[0m"
 
-rm -rf composer.lock vendor/
+rm -f composer.lock
 
 echo -e "\n\e[46m§ Installing deps...\e[0m"
 composer require -q --dev --no-update phpunit/phpunit:${PHPUNIT}
