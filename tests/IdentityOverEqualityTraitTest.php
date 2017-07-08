@@ -65,7 +65,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
 
     public function testAssertNotEqualsFails()
     {
-        $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+        $this->expectException(Warning::class);
 
         $this->assertNotEquals(5, 10);
     }
@@ -83,7 +83,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
 
     public function testAssertAttributeEqualsFails()
     {
-        $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+        $this->expectException(Warning::class);
 
         $this->assertAttributeEquals(123, 'fixtureAttributeInt', $this);
     }
@@ -101,7 +101,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
 
     public function testAssertAttributeNotEqualsFails()
     {
-        $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+        $this->expectException(Warning::class);
 
         $this->assertAttributeNotEquals(321, 'fixtureAttributeInt', $this);
     }
