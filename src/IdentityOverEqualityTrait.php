@@ -30,7 +30,7 @@ trait IdentityOverEqualityTrait
             Reporter::report('Use `->assertSame()` instead of `->assertEquals()`.');
         }
 
-        return call_user_func_array(array('parent', __FUNCTION__), func_get_args());
+        call_user_func_array(array('parent', __FUNCTION__), func_get_args());
     }
 
     public static function assertNotEquals($expected, $actual, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
@@ -42,6 +42,34 @@ trait IdentityOverEqualityTrait
             Reporter::report('Use `->assertNotSame()` instead of `->assertNotEquals()`.');
         }
 
-        return call_user_func_array(array('parent', __FUNCTION__), func_get_args());
+        call_user_func_array(array('parent', __FUNCTION__), func_get_args());
+    }
+
+    public static function assertAttributeEquals($expected, $actualAttributeName, $actualClassOrObject, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
+    {
+        // need to override the method, as original on v4 is not using Late Static Binding
+        static::assertEquals(
+            $expected,
+            self::readAttribute($actualClassOrObject, $actualAttributeName),
+            $message,
+            $delta,
+            $maxDepth,
+            $canonicalize,
+            $ignoreCase
+        );
+    }
+
+    public static function assertAttributeNotEquals($expected, $actualAttributeName, $actualClassOrObject, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
+    {
+        // need to override the method, as original on v4 is not using Late Static Binding
+        static::assertNotEquals(
+            $expected,
+            self::readAttribute($actualClassOrObject, $actualAttributeName),
+            $message,
+            $delta,
+            $maxDepth,
+            $canonicalize,
+            $ignoreCase
+        );
     }
 }
