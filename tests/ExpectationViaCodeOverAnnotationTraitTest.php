@@ -20,6 +20,7 @@ use PHPUnitGoodPractices\Reporter;
  */
 final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
 {
+    use HelperTrait;
     use ExpectationViaCodeOverAnnotationTrait;
 
     public function getName($withDataSet = true)
@@ -58,9 +59,20 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
         Reporter::clearCustomReporter();
     }
 
-    public function testExpectationViaCodeWorks()
+    public function testExpectationViaCodeExpectExceptionWorks()
     {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
+
         $this->expectException('Exception');
+
+        throw new \Exception();
+    }
+
+    public function testExpectationViaCodeSetExpectedExceptionWorks()
+    {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedException');
+
+        $this->setExpectedException('Exception');
 
         throw new \Exception();
     }

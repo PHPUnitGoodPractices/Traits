@@ -36,7 +36,7 @@ trait ExpectationViaCodeOverAnnotationTrait
         }
 
         if (false !== $expectedException) {
-            Reporter::report('Use `->expectException*()` instead of `@expectedException*`.');
+            Reporter::report('Use `->expectExeption*()` or `->setExpectedException*()` instead of `@expectedException*`.');
             parent::setExpectedExceptionFromAnnotation();
         }
 

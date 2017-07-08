@@ -22,7 +22,7 @@ final class StrictAssertionTraitTest extends TestCase
 {
     use StrictAssertionTrait;
 
-   public function expectException($exception)
+    public function expectException($exception)
     {
         if (is_callable(array('parent', 'expectException'))) {
             parent::expectException($exception);
