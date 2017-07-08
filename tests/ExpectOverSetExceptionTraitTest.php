@@ -13,16 +13,70 @@ namespace PHPUnitGoodPractices\Tests;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\ExpectOverSetExceptionTrait;
+use PHPUnitGoodPractices\Reporter;
 
 /**
  * @covers \PHPUnitGoodPractices\ExpectOverSetExceptionTrait
  */
 final class ExpectOverSetExceptionTraitTest extends TestCase
 {
+    use HelperTrait;
     use ExpectOverSetExceptionTrait;
 
-    public function testAssertSameWorks()
+    public $violations = array();
+
+    public function setUp()
     {
-        $this->assertTrue('todo');
+        $this->violations = array();
+        $self = $this;
+        $customReporter = function ($issue) use ($self) { $self->violations[] = $issue; };
+        Reporter::setCustomReporter($customReporter);
+    }
+
+    public function tearDown()
+    {
+        Reporter::clearCustomReporter();
+    }
+
+    public function testSetExpectedExceptionWithNull()
+    {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedException');
+
+        $this->setExpectedException(null);
+        $this->assertCount(1, $this->violations);
+        $this->assertRegExp('/.*null.*/', $this->violations[0]);
+    }
+
+    public function testSetExpectedExceptionRegExpWithNull()
+    {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedExceptionRegExp');
+
+        $this->setExpectedExceptionRegExp(null);
+        $this->assertCount(1, $this->violations);
+        $this->assertRegExp('/.*null.*/', $this->violations[0]);
+    }
+
+    public function testSetExpectedException()
+    {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedException');
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
+
+        $this->setExpectedException(\Exception::class);
+        $this->assertCount(1, $this->violations);
+        $this->assertRegExp('/.*expectExeption.*/', $this->violations[0]);
+
+        throw new \Exception();
+    }
+
+    public function testSetExpectedExceptionRegExp()
+    {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedExceptionRegExp');
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
+
+        $this->setExpectedExceptionRegExp(\Exception::class);
+        $this->assertCount(1, $this->violations);
+        $this->assertRegExp('/.*expectExeption.*/', $this->violations[0]);
+
+        throw new \Exception();
     }
 }
