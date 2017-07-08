@@ -11,6 +11,14 @@
 
 namespace PHPUnitGoodPractices;
 
+/**
+ * Identity assertion shall be used over equality ones.
+ *
+ * `assertSame` instead of `assertEquals`
+ * `assertNotSame` instead of `assertNotEquals`
+ * `assertAttributeSame` instead of `assertAttributeEquals`
+ * `assertAttributeNotSame` instead of `assertAttributeNotEquals`
+ */
 trait IdentityOverEqualityTrait
 {
     public static function assertEquals($expected, $actual, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
@@ -25,5 +33,15 @@ trait IdentityOverEqualityTrait
         return call_user_func_array(array('parent', __FUNCTION__), func_get_args());
     }
 
-    // TODO: add following assertions: assertAttributeEquals, assertAttributeNotEquals, assertNotEquals
+    public static function assertNotEquals($expected, $actual, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
+    {
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+
+        // internally, PHPUnit calls `assertEquals` instead of `assertSame` internally, we allow that
+        if ('assertNotSame' !== $trace[1]['function']) {
+            Reporter::report('Use `->assertNotSame()` instead of `->assertNotEquals()`.');
+        }
+
+        return call_user_func_array(array('parent', __FUNCTION__), func_get_args());
+    }
 }
