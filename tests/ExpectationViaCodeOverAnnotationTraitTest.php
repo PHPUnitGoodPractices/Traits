@@ -31,7 +31,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
                 'PHPUnitGoodPractices\Tests\ExpectationViaCodeOverAnnotationTraitTest' === $trace['class'] &&
                 'testExpectationViaAnnotationFails' === $trace['function']
             ) {
-                return 'fixture_testExpectationViaAnnotationFails';
+                return 'fixture';
             }
         }
 
@@ -41,7 +41,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
     /**
      * @expectedException \Exception
      */
-    public function fixture_testExpectationViaAnnotationFails()
+    public function fixture()
     {
     }
 
