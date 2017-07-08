@@ -11,7 +11,7 @@
 
 namespace PHPUnitGoodPractices;
 
-trait StrictAssertionTrait
+trait IdentityOverEqualityTrait
 {
     public static function assertEquals($expected, $actual, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
     {

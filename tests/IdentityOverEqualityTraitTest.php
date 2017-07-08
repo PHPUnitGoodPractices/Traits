@@ -13,14 +13,14 @@ namespace PHPUnitGoodPractices\Tests;
 
 use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\StrictAssertionTrait;
+use PHPUnitGoodPractices\IdentityOverEqualityTrait;
 
 /**
- * @covers \PHPUnitGoodPractices\StrictAssertionTrait
+ * @covers \PHPUnitGoodPractices\IdentityOverEqualityTrait
  */
-final class StrictAssertionTraitTest extends TestCase
+final class IdentityOverEqualityTraitTest extends TestCase
 {
-    use StrictAssertionTrait;
+    use IdentityOverEqualityTrait;
 
     public function testAssertSameWorks()
     {
