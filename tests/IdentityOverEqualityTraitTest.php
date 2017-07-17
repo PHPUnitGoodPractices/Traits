@@ -44,14 +44,14 @@ final class IdentityOverEqualityTraitTest extends TestCase
 
         Reporter::setCustomReporter(function () {});
         try {
-            parent::$assertionMethod(...$callArgs);
+            call_user_func_array(['parent', $assertionMethod], $callArgs);
         } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
             $shouldFail = true;
         }
 
         Reporter::setCustomReporter(function () use (&$crashed) { $crashed = true; });
         try {
-            $this->$assertionMethod(...$callArgs);
+            call_user_func_array([$this, $assertionMethod], $callArgs);
         } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
             $failed = true;
         }
