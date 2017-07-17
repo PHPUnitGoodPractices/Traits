@@ -25,7 +25,7 @@ final class ProphecyOverMockObjectTraitTest extends TestCase
 
     public function expectException($exception)
     {
-        if (is_callable(array('parent', 'expectException'))) {
+        if (is_callable(['parent', 'expectException'])) {
             parent::expectException($exception);
         } else {
             $this->setExpectedException($exception);
