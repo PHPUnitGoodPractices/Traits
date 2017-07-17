@@ -11,9 +11,9 @@
 
 namespace PHPUnitGoodPractices\Tests;
 
-use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\IdentityOverEqualityTrait;
+use PHPUnitGoodPractices\Reporter;
 
 /**
  * @covers \PHPUnitGoodPractices\IdentityOverEqualityTrait
@@ -25,84 +25,168 @@ final class IdentityOverEqualityTraitTest extends TestCase
     public $fixtureAttributeBool = true;
     public $fixtureAttributeInt = 123;
 
-    public function expectException($exception)
+    public function tearDown()
     {
-        if (is_callable(array('parent', 'expectException'))) {
-            parent::expectException($exception);
-        } else {
-            $this->setExpectedException($exception);
+        Reporter::clearCustomReporter();
+    }
+
+    /**
+     * @param string  $assertionMethod
+     * @param mixed[] $callArgs
+     * @param bool    $shouldCrash
+     */
+    public function assertAssertionExecution($assertionMethod, array $callArgs, $shouldCrash)
+    {
+        $failed = false;
+        $crashed = false;
+
+        $shouldFail = false;
+
+        Reporter::setCustomReporter(function () {});
+        try {
+            parent::$assertionMethod(...$callArgs);
+        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+            $shouldFail = true;
         }
+
+        Reporter::setCustomReporter(function () use (&$crashed) { $crashed = true; });
+        try {
+            $this->$assertionMethod(...$callArgs);
+        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+            $failed = true;
+        }
+
+        $this->assertSame($shouldCrash, $crashed, 'Shall crash.');
+        $this->assertSame($shouldFail, $failed, 'Shall fail.');
     }
 
-    public function testAssertSameWorks()
+    /**
+     * @param mixed $data
+     * @param mixed $expected
+     *
+     * @dataProvider provideAssertSameCases
+     */
+    public function testAssertSame($data, $expected)
     {
-        $this->assertSame(5, 5);
+        $this->assertAssertionExecution('assertSame', array($expected, $data), false);
     }
 
-    public function testAssertSameWorksForBooleans()
+    /**
+     * @param mixed $data
+     * @param mixed $expected
+     *
+     * @dataProvider provideAssertSameCases
+     */
+    public function testAssertNotSame($data, $expected)
     {
-        // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
-        $this->assertSame(true, true);
+        $this->assertAssertionExecution('assertNotSame', array($expected, $data), false);
     }
 
-    public function testAssertEqualsFails()
+    public function provideAssertSameCases()
     {
-        $this->expectException(Warning::class);
-
-        $this->assertEquals(5, 5);
+        return array(
+            array(5, 5),
+            array(5, -5),
+            // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
+            array(true, true),
+            array(true, false),
+        );
     }
 
-    public function testAssertNotSameWorks()
+    /**
+     * @param mixed $data
+     * @param mixed $expected
+     *
+     * @dataProvider provideAssertEqualsCases
+     */
+    public function testAssertEquals($data, $expected)
     {
-        $this->assertNotSame(5, 10);
+        $this->assertAssertionExecution('assertEquals', array($expected, $data), true);
     }
 
-    public function testAssertNotSameWorksForBooleans()
+    /**
+     * @param mixed $data
+     * @param mixed $expected
+     *
+     * @dataProvider provideAssertEqualsCases
+     */
+    public function testAssertNotEquals($data, $expected)
     {
-        // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
-        $this->assertNotSame(true, false);
+        $this->assertAssertionExecution('assertNotEquals', array($expected, $data), true);
     }
 
-    public function testAssertNotEqualsFails()
+    public function provideAssertEqualsCases()
     {
-        $this->expectException(Warning::class);
-
-        $this->assertNotEquals(5, 10);
+        return array(
+            array(5, 5),
+            array(5, -5),
+            // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
+            array(true, true),
+            array(true, false),
+        );
     }
 
-    public function testAssertAttributeSameWorks()
+    /**
+     * @param string $attribute
+     * @param mixed  $expected
+     *
+     * @dataProvider provideAssertAttributeSameCases
+     */
+    public function testAssertAttributeSame($attribute, $expected)
     {
-        $this->assertAttributeSame(123, 'fixtureAttributeInt', $this);
+        $this->assertAssertionExecution('assertAttributeSame', array($expected, $attribute, $this), false);
     }
 
-    public function testAssertAttributeSameWorksForBooleans()
+    /**
+     * @param string $attribute
+     * @param mixed  $expected
+     *
+     * @dataProvider provideAssertAttributeSameCases
+     */
+    public function testAssertAttributeNotSame($attribute, $expected)
     {
-        // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
-        $this->assertAttributeSame(true, 'fixtureAttributeBool', $this);
+        $this->assertAssertionExecution('assertAttributeNotSame', array($expected, $attribute, $this), false);
     }
 
-    public function testAssertAttributeEqualsFails()
+    public function provideAssertAttributeSameCases()
     {
-        $this->expectException(Warning::class);
-
-        $this->assertAttributeEquals(123, 'fixtureAttributeInt', $this);
+        return array(
+            array('fixtureAttributeBool', true),
+            array('fixtureAttributeInt', 123),
+            array('fixtureAttributeBool', true),
+            array('fixtureAttributeInt', 123),
+        );
     }
 
-    public function testAssertAttributeNotSameWorks()
+    /**
+     * @param string $attribute
+     * @param mixed  $expected
+     *
+     * @dataProvider provideAssertAttributeEqualsCases
+     */
+    public function testAssertAttributeEquals($attribute, $expected)
     {
-        $this->assertAttributeNotSame(321, 'fixtureAttributeInt', $this);
+        $this->assertAssertionExecution('assertAttributeEquals', array($expected, $attribute, $this), true);
     }
 
-    public function testAssertAttributeNotSameWorksForBooleans()
+    /**
+     * @param string $attribute
+     * @param mixed  $expected
+     *
+     * @dataProvider provideAssertAttributeEqualsCases
+     */
+    public function testAssertAttributeNotEquals($attribute, $expected)
     {
-        // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
-        $this->assertAttributeNotSame(false, 'fixtureAttributeBool', $this);
+        $this->assertAssertionExecution('assertAttributeNotEquals', array($expected, $attribute, $this), true);
     }
 
-    public function testAssertAttributeNotEqualsFails()
+    public function provideAssertAttributeEqualsCases()
     {
-        $this->expectException(Warning::class);
-
-        $this->assertAttributeNotEquals(321, 'fixtureAttributeInt', $this);
+        return array(
+            array('fixtureAttributeBool', true),
+            array('fixtureAttributeInt', 123),
+            array('fixtureAttributeBool', true),
+            array('fixtureAttributeInt', 123),
+        );
     }
 }

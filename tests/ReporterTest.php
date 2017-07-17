@@ -13,6 +13,7 @@ namespace PHPUnitGoodPractices\Tests;
 
 use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
+use PHPUnitGoodPractices\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Reporter;
 
 /**
@@ -20,6 +21,8 @@ use PHPUnitGoodPractices\Reporter;
  */
 final class ReporterTest extends TestCase
 {
+    use IdentityOverEqualityTrait;
+
     public function tearDown()
     {
         // reset global `Reporter` state
@@ -81,5 +84,16 @@ final class ReporterTest extends TestCase
             $this->setExpectedException(Warning::class);
         }
         Reporter::report('Foo.');
+    }
+
+    public function testObservedAssertionCrashesTestExecutionWhileUsingDefaultReporter()
+    {
+        if (is_callable(array($this, 'expectException'))) {
+            $this->expectException(Warning::class);
+        } else {
+            $this->setExpectedException(Warning::class);
+        }
+
+        $this->assertEquals(1, 1);
     }
 }
