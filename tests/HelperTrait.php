@@ -22,7 +22,18 @@ trait HelperTrait
     {
         if (!is_callable([$this, $method])) {
             static::markTestSkipped(sprintf(
-                'PHPUnit %s is not providing "%s" method.',
+                'Skipping, as PHPUnit %s is not providing "%s" method.',
+                Version::id(),
+                $method
+            ));
+        }
+    }
+
+    public function markTestSkippedIfPHPUnitMethodExists($method)
+    {
+        if (is_callable([$this, $method])) {
+            static::markTestSkipped(sprintf(
+                'Skipping, as PHPUnit %s is providing "%s" method.',
                 Version::id(),
                 $method
             ));
