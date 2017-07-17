@@ -8,6 +8,10 @@ Highly opinionated PHPUnit good practices enforcer.
 
 Identity assertion (`===`) shall be used over equality ones (`==`).
 
+### ProphecyOverMockObjectTrait
+
+Prophecy shall be used over Mock Objects.
+
 ## Example usage
 
 ```php
@@ -17,10 +21,12 @@ namespace FooProject\Tests;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\IdentityOverEqualityTrait;
+use PHPUnitGoodPractices\ProphecyOverMockObjectTrait;
 
 final class FooTest extends TestCase
 {
     use IdentityOverEqualityTrait;
+    use ProphecyOverMockObjectTrait;
     
     public function testBar()
     {
