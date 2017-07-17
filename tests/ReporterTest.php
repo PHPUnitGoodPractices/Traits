@@ -34,7 +34,7 @@ final class ReporterTest extends TestCase
     {
         $expectedMessage = "PHPUnit good practice has been abused.\nFoo.";
 
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
             $this->expectExceptionMessage($expectedMessage);
         } else {
@@ -50,7 +50,7 @@ final class ReporterTest extends TestCase
 
         $expectedMessage = 'Foo.';
 
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
             $this->expectExceptionMessage($expectedMessage);
         } else {
@@ -78,7 +78,7 @@ final class ReporterTest extends TestCase
         Reporter::report('Foo.');
 
         Reporter::clearCustomReporter();
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
         } else {
             $this->setExpectedException(Warning::class);
@@ -88,7 +88,7 @@ final class ReporterTest extends TestCase
 
     public function testObservedAssertionCrashesTestExecutionWhileUsingDefaultReporter()
     {
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
         } else {
             $this->setExpectedException(Warning::class);

@@ -68,7 +68,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertSame($data, $expected)
     {
-        $this->assertAssertionExecution('assertSame', array($expected, $data), false);
+        $this->assertAssertionExecution('assertSame', [$expected, $data], false);
     }
 
     /**
@@ -79,18 +79,18 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertNotSame($data, $expected)
     {
-        $this->assertAssertionExecution('assertNotSame', array($expected, $data), false);
+        $this->assertAssertionExecution('assertNotSame', [$expected, $data], false);
     }
 
     public function provideAssertSameCases()
     {
-        return array(
-            array(5, 5),
-            array(5, -5),
+        return [
+            [5, 5],
+            [5, -5],
             // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
-            array(true, true),
-            array(true, false),
-        );
+            [true, true],
+            [true, false],
+        ];
     }
 
     /**
@@ -101,7 +101,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertEquals($data, $expected)
     {
-        $this->assertAssertionExecution('assertEquals', array($expected, $data), true);
+        $this->assertAssertionExecution('assertEquals', [$expected, $data], true);
     }
 
     /**
@@ -112,18 +112,18 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertNotEquals($data, $expected)
     {
-        $this->assertAssertionExecution('assertNotEquals', array($expected, $data), true);
+        $this->assertAssertionExecution('assertNotEquals', [$expected, $data], true);
     }
 
     public function provideAssertEqualsCases()
     {
-        return array(
-            array(5, 5),
-            array(5, -5),
+        return [
+            [5, 5],
+            [5, -5],
             // assertSame has special handling when both params are booleans and it calls `assertEquals` under the hood
-            array(true, true),
-            array(true, false),
-        );
+            [true, true],
+            [true, false],
+        ];
     }
 
     /**
@@ -134,7 +134,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertAttributeSame($attribute, $expected)
     {
-        $this->assertAssertionExecution('assertAttributeSame', array($expected, $attribute, $this), false);
+        $this->assertAssertionExecution('assertAttributeSame', [$expected, $attribute, $this], false);
     }
 
     /**
@@ -145,17 +145,17 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertAttributeNotSame($attribute, $expected)
     {
-        $this->assertAssertionExecution('assertAttributeNotSame', array($expected, $attribute, $this), false);
+        $this->assertAssertionExecution('assertAttributeNotSame', [$expected, $attribute, $this], false);
     }
 
     public function provideAssertAttributeSameCases()
     {
-        return array(
-            array('fixtureAttributeBool', true),
-            array('fixtureAttributeInt', 123),
-            array('fixtureAttributeBool', true),
-            array('fixtureAttributeInt', 123),
-        );
+        return [
+            ['fixtureAttributeBool', true],
+            ['fixtureAttributeInt', 123],
+            ['fixtureAttributeBool', true],
+            ['fixtureAttributeInt', 123],
+        ];
     }
 
     /**
@@ -166,7 +166,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertAttributeEquals($attribute, $expected)
     {
-        $this->assertAssertionExecution('assertAttributeEquals', array($expected, $attribute, $this), true);
+        $this->assertAssertionExecution('assertAttributeEquals', [$expected, $attribute, $this], true);
     }
 
     /**
@@ -177,16 +177,16 @@ final class IdentityOverEqualityTraitTest extends TestCase
      */
     public function testAssertAttributeNotEquals($attribute, $expected)
     {
-        $this->assertAssertionExecution('assertAttributeNotEquals', array($expected, $attribute, $this), true);
+        $this->assertAssertionExecution('assertAttributeNotEquals', [$expected, $attribute, $this], true);
     }
 
     public function provideAssertAttributeEqualsCases()
     {
-        return array(
-            array('fixtureAttributeBool', true),
-            array('fixtureAttributeInt', 123),
-            array('fixtureAttributeBool', true),
-            array('fixtureAttributeInt', 123),
-        );
+        return [
+            ['fixtureAttributeBool', true],
+            ['fixtureAttributeInt', 123],
+            ['fixtureAttributeBool', true],
+            ['fixtureAttributeInt', 123],
+        ];
     }
 }

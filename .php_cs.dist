@@ -14,7 +14,7 @@ return PhpCsFixer\Config::create()
     ->setRules(array(
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        'array_syntax' => array('syntax' => 'long'),
+        'array_syntax' => array('syntax' => 'short'),
         'combine_consecutive_unsets' => true,
         'header_comment' => array('header' => $header),
         'heredoc_to_nowdoc' => true,
