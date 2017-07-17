@@ -12,7 +12,7 @@
 namespace PHPUnitGoodPractices;
 
 /**
- * Identity assertion shall be used over equality ones.
+ * Identity (`===`) assertions shall be used over equality (`==`) ones.
  *
  * `assertSame` instead of `assertEquals`
  * `assertNotSame` instead of `assertNotEquals`
