@@ -23,11 +23,11 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
     use HelperTrait;
     use ExpectOverSetExceptionTrait;
 
-    public $violations = array();
+    public $violations = [];
 
     public function setUp()
     {
-        $this->violations = array();
+        $this->violations = [];
         $self = $this;
         $customReporter = function ($issue) use ($self) { $self->violations[] = $issue; };
         Reporter::setCustomReporter($customReporter);
