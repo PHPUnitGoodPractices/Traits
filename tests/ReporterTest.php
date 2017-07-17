@@ -13,6 +13,7 @@ namespace PHPUnitGoodPractices\Tests;
 
 use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
+use PHPUnitGoodPractices\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Reporter;
 
 /**
@@ -20,6 +21,8 @@ use PHPUnitGoodPractices\Reporter;
  */
 final class ReporterTest extends TestCase
 {
+    use IdentityOverEqualityTrait;
+
     public function tearDown()
     {
         // reset global `Reporter` state
@@ -31,7 +34,7 @@ final class ReporterTest extends TestCase
     {
         $expectedMessage = "PHPUnit good practice has been abused.\nFoo.";
 
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
             $this->expectExceptionMessage($expectedMessage);
         } else {
@@ -47,7 +50,7 @@ final class ReporterTest extends TestCase
 
         $expectedMessage = 'Foo.';
 
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
             $this->expectExceptionMessage($expectedMessage);
         } else {
@@ -75,11 +78,22 @@ final class ReporterTest extends TestCase
         Reporter::report('Foo.');
 
         Reporter::clearCustomReporter();
-        if (is_callable(array($this, 'expectException'))) {
+        if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);
         } else {
             $this->setExpectedException(Warning::class);
         }
         Reporter::report('Foo.');
+    }
+
+    public function testObservedAssertionCrashesTestExecutionWhileUsingDefaultReporter()
+    {
+        if (is_callable([$this, 'expectException'])) {
+            $this->expectException(Warning::class);
+        } else {
+            $this->setExpectedException(Warning::class);
+        }
+
+        $this->assertEquals(1, 1);
     }
 }
