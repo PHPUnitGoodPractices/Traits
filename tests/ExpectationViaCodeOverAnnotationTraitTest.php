@@ -20,16 +20,16 @@ use PHPUnitGoodPractices\Reporter;
  */
 final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
 {
-    use HelperTrait;
     use ExpectationViaCodeOverAnnotationTrait;
+    use HelperTrait;
 
     public function getName($withDataSet = true)
     {
-        // partial mock for `testExpectationViaAnnotationFails` test
+        // partial mock for `testSetExpectedExceptionFromAnnotation` test
         foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $trace) {
             if (
                 'PHPUnitGoodPractices\Tests\ExpectationViaCodeOverAnnotationTraitTest' === $trace['class'] &&
-                'testExpectationViaAnnotationFails' === $trace['function']
+                'testSetExpectedExceptionFromAnnotation' === $trace['function']
             ) {
                 return 'fixture';
             }
@@ -45,7 +45,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
     {
     }
 
-    public function testExpectationViaAnnotationFails()
+    public function testSetExpectedExceptionFromAnnotation()
     {
         $counter = 0;
         $customReporter = function () use (&$counter) { ++$counter; };
@@ -59,7 +59,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
         Reporter::clearCustomReporter();
     }
 
-    public function testExpectationViaCodeExpectExceptionWorks()
+    public function testExpectException()
     {
         $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
 
@@ -68,7 +68,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
         throw new \Exception();
     }
 
-    public function testExpectationViaCodeSetExpectedExceptionWorks()
+    public function testSetExpectedException()
     {
         $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedException');
 

@@ -20,7 +20,7 @@ trait HelperTrait
 {
     public function markTestSkippedIfPHPUnitMethodIsMissing($method)
     {
-        if (!is_callable(array($this, $method))) {
+        if (!is_callable([$this, $method])) {
             static::markTestSkipped(sprintf(
                 'PHPUnit %s is not providing "%s" method.',
                 Version::id(),
