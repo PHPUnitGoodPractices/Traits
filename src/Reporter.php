@@ -31,7 +31,7 @@ final class Reporter
     private static $useHeader = true;
 
     /**
-     * @param $reporter ?Closure
+     * @param $reporter Closure
      */
     public static function setCustomReporter(Closure $reporter)
     {
