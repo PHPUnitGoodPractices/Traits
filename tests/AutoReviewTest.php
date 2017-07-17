@@ -11,10 +11,7 @@
 
 namespace PHPUnitGoodPractices\Tests;
 
-use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\IdentityOverEqualityTrait;
-use PHPUnitGoodPractices\Reporter;
 
 /**
  * @coversNothing
