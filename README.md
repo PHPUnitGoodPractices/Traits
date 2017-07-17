@@ -8,6 +8,10 @@ Highly opinionated PHPUnit good practices enforcer.
 
 Expected exception shall be set up via code, not annotations.
 
+### ExpectOverSetExceptionTrait
+
+Expectation shall be set directly over via setter.
+
 ### IdentityOverEqualityTrait
 
 Identity assertion (`===`) shall be used over equality ones (`==`).
@@ -25,12 +29,14 @@ namespace FooProject\Tests;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\ExpectationViaCodeOverAnnotationTrait;
+use PHPUnitGoodPractices\ExpectOverSetExceptionTrait;
 use PHPUnitGoodPractices\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\ProphecyOverMockObjectTrait;
 
 final class FooTest extends TestCase
 {
     use ExpectationViaCodeOverAnnotationTrait;
+    use ExpectOverSetExceptionTrait;
     use IdentityOverEqualityTrait;
     use ProphecyOverMockObjectTrait;
 
