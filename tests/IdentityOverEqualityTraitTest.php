@@ -11,6 +11,7 @@
 
 namespace PHPUnitGoodPractices\Tests;
 
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Reporter;
@@ -45,14 +46,14 @@ final class IdentityOverEqualityTraitTest extends TestCase
         Reporter::setCustomReporter(function () {});
         try {
             call_user_func_array(['parent', $assertionMethod], $callArgs);
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $shouldFail = true;
         }
 
         Reporter::setCustomReporter(function () use (&$crashed) { $crashed = true; });
         try {
             call_user_func_array([$this, $assertionMethod], $callArgs);
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $failed = true;
         }
 
