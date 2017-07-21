@@ -26,7 +26,15 @@ trait IdentityOverEqualityTrait
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
 
         // sometimes, PHPUnit calls `assertEquals` instead of `assertSame` internally, we allow that
-        if ('assertSame' !== $trace[1]['function']) {
+        if (!in_array(
+            $trace[1]['function'],
+            [
+                'assertJsonStringEqualsJsonString',
+                'assertSame',
+                'assertXmlStringEqualsXmlString'
+            ],
+            true
+        )) {
             Reporter::report('Use `->assertSame()` instead of `->assertEquals()`.');
         }
 

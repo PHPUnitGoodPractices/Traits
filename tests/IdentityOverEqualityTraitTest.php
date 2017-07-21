@@ -57,8 +57,8 @@ final class IdentityOverEqualityTraitTest extends TestCase
             $failed = true;
         }
 
-        $this->assertSame($shouldCrash, $crashed, 'Shall crash.');
-        $this->assertSame($shouldFail, $failed, 'Shall fail.');
+        $this->assertSame($shouldCrash, $crashed, sprintf('Expect to %scrash.', $shouldCrash ? '' : 'NOT '));
+        $this->assertSame($shouldFail, $failed, sprintf('Expect to %sfail.', $shouldFail ? '' : 'NOT '));
     }
 
     /**
@@ -189,5 +189,22 @@ final class IdentityOverEqualityTraitTest extends TestCase
             ['fixtureAttributeBool', true],
             ['fixtureAttributeInt', 123],
         ];
+    }
+
+    public function testAssertJsonStringEqualsJsonString()
+    {
+        $this->assertAssertionExecution('assertJsonStringEqualsJsonString', [
+            '{"a": "b", "c": "d"}',
+            '{"c": "d", "a": "b"}',
+        ], false);
+    }
+
+    public function testAssertXmlStringEqualsXmlString()
+    {
+        $this->assertAssertionExecution('assertXmlStringEqualsXmlString', [
+            '<?xml version="1.0" encoding="UTF-8"?><report></report>',
+            '<?xml version="1.0" encoding="UTF-8"?>
+            <report></report>',
+        ], false);
     }
 }
