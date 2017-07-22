@@ -31,7 +31,7 @@ trait IdentityOverEqualityTrait
             [
                 'assertJsonStringEqualsJsonString',
                 'assertSame',
-                'assertXmlStringEqualsXmlString'
+                'assertXmlStringEqualsXmlString',
             ],
             true
         )) {
