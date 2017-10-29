@@ -73,7 +73,7 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedExceptionRegExp');
         $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
 
-        $this->setExpectedExceptionRegExp(\Exception::class);
+        $this->setExpectedExceptionRegExp(\Exception::class, '/.*/');
         $this->assertCount(1, $this->violations);
         $this->assertRegExp('/.*expectExeption.*/', $this->violations[0]);
 
