@@ -20,6 +20,10 @@ env:
     global:
         - DEFAULT_COMPOSER_FLAGS="--no-interaction --no-progress"
 
+stages:
+    - Static Code Analysis
+    - Test
+
 before_install:
     # turn off XDebug
     - phpenv config-rm xdebug.ini || return 0
