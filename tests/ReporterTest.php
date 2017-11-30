@@ -9,15 +9,15 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices\Tests;
+namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\IdentityOverEqualityTrait;
-use PHPUnitGoodPractices\Reporter;
+use PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait;
+use PHPUnitGoodPractices\Traits\Reporter;
 
 /**
- * @covers \PHPUnitGoodPractices\Reporter
+ * @covers \PHPUnitGoodPractices\Traits\Reporter
  */
 final class ReporterTest extends TestCase
 {

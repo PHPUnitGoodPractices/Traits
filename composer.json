@@ -1,5 +1,5 @@
 {
-    "name": "phpunitgoodpractices/phpunit-good-practices",
+    "name": "phpunitgoodpractices/traits",
     "type": "library",
     "description": "Highly opinionated PHPUnit good practices enforcer.",
     "license": "MIT",
@@ -21,9 +21,9 @@
         "sort-packages": true
     },
     "autoload": {
-        "psr-4": { "PHPUnitGoodPractices\\": "src/" }
+        "psr-4": { "PHPUnitGoodPractices\\Traits\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "PHPUnitGoodPractices\\Tests\\": "tests/" }
+        "psr-4": { "PHPUnitGoodPractices\\Traits\\Tests\\": "tests/" }
     }
 }

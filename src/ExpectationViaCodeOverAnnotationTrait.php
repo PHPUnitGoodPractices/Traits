@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices;
+namespace PHPUnitGoodPractices\Traits;
 
 use PHPUnit\Util\Test;
 use PHPUnit_Util_Test;

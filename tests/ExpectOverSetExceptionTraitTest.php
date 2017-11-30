@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices\Tests;
+namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\ExpectOverSetExceptionTrait;
-use PHPUnitGoodPractices\Reporter;
+use PHPUnitGoodPractices\Traits\ExpectOverSetExceptionTrait;
+use PHPUnitGoodPractices\Traits\Reporter;
 
 /**
- * @covers \PHPUnitGoodPractices\ExpectOverSetExceptionTrait
+ * @covers \PHPUnitGoodPractices\Traits\ExpectOverSetExceptionTrait
  */
 final class ExpectOverSetExceptionTraitTest extends TestCase
 {
