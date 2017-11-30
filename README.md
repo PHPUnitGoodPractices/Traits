@@ -28,10 +28,10 @@ Prophecy shall be used over Mock Objects.
 namespace FooProject\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\ExpectationViaCodeOverAnnotationTrait;
-use PHPUnitGoodPractices\ExpectOverSetExceptionTrait;
-use PHPUnitGoodPractices\IdentityOverEqualityTrait;
-use PHPUnitGoodPractices\ProphecyOverMockObjectTrait;
+use PHPUnitGoodPractices\Traits\ExpectationViaCodeOverAnnotationTrait;
+use PHPUnitGoodPractices\Traits\ExpectOverSetExceptionTrait;
+use PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait;
+use PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait;
 
 final class FooTest extends TestCase
 {
