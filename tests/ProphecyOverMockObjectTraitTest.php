@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices\Tests;
+namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\ProphecyOverMockObjectTrait;
+use PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait;
 
 /**
- * @covers \PHPUnitGoodPractices\ProphecyOverMockObjectTrait
+ * @covers \PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait
  */
 final class ProphecyOverMockObjectTraitTest extends TestCase
 {

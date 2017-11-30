@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices;
+namespace PHPUnitGoodPractices\Traits;
 
 /**
  * Identity (`===`) assertions shall be used over equality (`==`) ones.

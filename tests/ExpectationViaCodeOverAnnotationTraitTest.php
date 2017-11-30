@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices\Tests;
+namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnitGoodPractices\ExpectationViaCodeOverAnnotationTrait;
-use PHPUnitGoodPractices\Reporter;
+use PHPUnitGoodPractices\Traits\ExpectationViaCodeOverAnnotationTrait;
+use PHPUnitGoodPractices\Traits\Reporter;
 
 /**
- * @covers \PHPUnitGoodPractices\ExpectationViaCodeOverAnnotationTrait
+ * @covers \PHPUnitGoodPractices\Traits\ExpectationViaCodeOverAnnotationTrait
  */
 final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
 {
@@ -28,7 +28,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
         // partial mock for `testSetExpectedExceptionFromAnnotation` test
         foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $trace) {
             if (
-                'PHPUnitGoodPractices\Tests\ExpectationViaCodeOverAnnotationTraitTest' === $trace['class'] &&
+                'PHPUnitGoodPractices\Traits\Tests\ExpectationViaCodeOverAnnotationTraitTest' === $trace['class'] &&
                 'testSetExpectedExceptionFromAnnotation' === $trace['function']
             ) {
                 return 'fixture';

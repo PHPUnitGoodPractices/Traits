@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace PHPUnitGoodPractices;
+namespace PHPUnitGoodPractices\Traits;
 
 if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.3') < 0) {
     trait ExpectOverSetExceptionTrait
