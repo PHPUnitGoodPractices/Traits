@@ -32,7 +32,7 @@ final class ReporterTest extends TestCase
 
     public function testReportWithDefaults()
     {
-        $expectedMessage = "PHPUnit good practice has been abused.\nFoo.";
+        $expectedMessage = "PHPUnit good practice has been violated.\nFoo.";
 
         if (is_callable([$this, 'expectException'])) {
             $this->expectException(Warning::class);

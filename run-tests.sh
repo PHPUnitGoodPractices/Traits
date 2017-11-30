@@ -15,8 +15,7 @@ echo -e "\e[46m§ Trying to execute tests under PHPUnit ${PHPUNIT}.\e[0m"
 rm -f composer.lock
 
 echo -e "\n\e[46m§ Installing deps...\e[0m"
-composer require -q --dev --no-update phpunit/phpunit:${PHPUNIT}
-composer update -q $DEFAULT_COMPOSER_FLAGS && INSTALLED=1 || INSTALLED=0
+composer require -q --dev --no-update phpunit/phpunit:${PHPUNIT} && composer update -q $DEFAULT_COMPOSER_FLAGS && INSTALLED=1 || INSTALLED=0
 git checkout composer.json
 
 if [ $INSTALLED == 0 ]
