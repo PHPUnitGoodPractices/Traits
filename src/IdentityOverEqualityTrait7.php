@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of PHPUnit Good Practices.
@@ -11,14 +13,6 @@
 
 namespace PHPUnitGoodPractices\Traits;
 
-/**
- * Identity (`===`) assertions shall be used over equality (`==`) ones.
- *
- * `assertSame` instead of `assertEquals`
- * `assertNotSame` instead of `assertNotEquals`
- * `assertAttributeSame` instead of `assertAttributeEquals`
- * `assertAttributeNotSame` instead of `assertAttributeNotEquals`
- */
 trait IdentityOverEqualityTrait7
 {
     public static function assertEquals($expected, $actual, string $message = '', float $delta = 0.0, int $maxDepth = 10, bool $canonicalize = false, bool $ignoreCase = false): void

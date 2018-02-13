@@ -14,7 +14,7 @@ namespace PHPUnitGoodPractices\Traits;
 use PHPUnit\Util\Test;
 use PHPUnit_Util_Test;
 
-/**
+/*
  * Expected exception shall be set up via code, not annotations.
  *
  * `->expectExeption*()` or `->setExpectedException*()` instead of `@expectedException*`

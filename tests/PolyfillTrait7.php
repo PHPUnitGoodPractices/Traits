@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of PHPUnit Good Practices.
@@ -11,11 +13,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Runner\Version;
-
-/**
- * @internal
- */
 trait PolyfillTrait7
 {
     public function expectException(string $exception): void

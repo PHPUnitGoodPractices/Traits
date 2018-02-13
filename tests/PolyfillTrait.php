@@ -11,10 +11,9 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Runner\Version;
 use PHPUnitGoodPractices\Traits\PHPUnitVersionRetriever;
 
-/**
+/*
  * @internal
  */
 if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
@@ -35,4 +34,3 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
         use PolyfillTrait7;
     }
 }
-

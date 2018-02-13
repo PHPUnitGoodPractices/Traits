@@ -11,7 +11,7 @@
 
 namespace PHPUnitGoodPractices\Traits;
 
-/**
+/*
  * Identity (`===`) assertions shall be used over equality (`==`) ones.
  *
  * `assertSame` instead of `assertEquals`
