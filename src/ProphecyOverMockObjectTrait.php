@@ -105,7 +105,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
             return call_user_func_array(['parent', __FUNCTION__], func_get_args());
         }
     }
-} else {
+} elseif (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
     trait ProphecyOverMockObjectTrait
     {
         public function getMockBuilder($className)
@@ -137,6 +137,51 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
         }
 
         protected function getMockForTrait($traitName, array $arguments = [], $mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true, $mockedMethods = [], $cloneArguments = false)
+        {
+            Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
+
+            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        }
+
+        protected function getObjectForTrait($traitName, array $arguments = [], $traitClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true)
+        {
+            Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
+
+            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        }
+    }
+} else {
+    trait ProphecyOverMockObjectTrait
+    {
+        public function getMockBuilder($className): \PHPUnit\Framework\MockObject\MockBuilder
+        {
+            Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
+
+            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        }
+
+        protected function getMockClass($originalClassName, $methods = [], array $arguments = [], $mockClassName = '', $callOriginalConstructor = false, $callOriginalClone = true, $callAutoload = true, $cloneArguments = false): string
+        {
+            Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
+
+            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        }
+
+        protected function getMockForAbstractClass($originalClassName, array $arguments = [], $mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true, $mockedMethods = [], $cloneArguments = false): \PHPUnit\Framework\MockObject\MockObject
+        {
+            Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
+
+            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        }
+
+        protected function getMockFromWsdl($wsdlFile, $originalClassName = '', $mockClassName = '', array $methods = [], $callOriginalConstructor = true, array $options = []): \PHPUnit\Framework\MockObject\MockObject
+        {
+            Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
+
+            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        }
+
+        protected function ggetMockForTrait($traitName, array $arguments = [], $mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true, $mockedMethods = [], $cloneArguments = false): \PHPUnit\Framework\MockObject\MockObject
         {
             Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 

@@ -23,7 +23,7 @@ final class ProphecyOverMockObjectTraitTest extends TestCase
     use HelperTrait;
     use ProphecyOverMockObjectTrait;
 
-    public function expectException($exception)
+    public function expectException(string $exception): void
     {
         if (is_callable(['parent', 'expectException'])) {
             parent::expectException($exception);

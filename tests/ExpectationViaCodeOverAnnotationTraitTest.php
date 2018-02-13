@@ -23,7 +23,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
     use ExpectationViaCodeOverAnnotationTrait;
     use HelperTrait;
 
-    public function getName($withDataSet = true)
+    public function getName(bool $withDataSet = true): ?string
     {
         // partial mock for `testSetExpectedExceptionFromAnnotation` test
         foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $trace) {
@@ -47,12 +47,24 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
 
     public function testSetExpectedExceptionFromAnnotation()
     {
+        $testClass = new class('testFixture') extends TestCase {
+            use ExpectationViaCodeOverAnnotationTrait;
+
+            /**
+             * @expectedException \Exception
+             */
+            public function testFixture()
+            {
+                throw new \Exception();
+            }
+        };
+
         $counter = 0;
         $customReporter = function () use (&$counter) { ++$counter; };
 
         Reporter::setCustomReporter($customReporter);
 
-        $this->setExpectedExceptionFromAnnotation();
+        $testClass->runBare();
 
         $this->assertSame(1, $counter);
 
