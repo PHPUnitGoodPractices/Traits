@@ -47,25 +47,6 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
 } else {
     trait ExpectationViaCodeOverAnnotationTrait
     {
-        public function runBare(): void
-        {
-            if (class_exists(Test::class)) {
-                $expectedException = Test::getExpectedException(
-                    get_class($this),
-                    $this->getName(false)
-                );
-            } else {
-                $expectedException = PHPUnit_Util_Test::getExpectedException(
-                    get_class($this),
-                    $this->getName(false)
-                );
-            }
-
-            if (false !== $expectedException) {
-                Reporter::report('Use `->expectExeption*()` or `->setExpectedException*()` instead of `@expectedException*`.');
-            }
-
-            parent::runBare();
-        }
+        use ExpectationViaCodeOverAnnotationTrait7;
     }
 }

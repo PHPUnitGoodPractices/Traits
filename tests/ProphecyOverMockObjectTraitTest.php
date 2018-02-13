@@ -21,16 +21,8 @@ use PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait;
 final class ProphecyOverMockObjectTraitTest extends TestCase
 {
     use HelperTrait;
+    use PolyfillTrait;
     use ProphecyOverMockObjectTrait;
-
-    public function expectException(string $exception): void
-    {
-        if (is_callable(['parent', 'expectException'])) {
-            parent::expectException($exception);
-        } else {
-            $this->setExpectedException($exception);
-        }
-    }
 
     public function testCreateMockFails()
     {
