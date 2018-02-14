@@ -20,6 +20,10 @@ Identity assertion (`===`) shall be used over equality ones (`==`).
 
 Prophecy shall be used over Mock Objects.
 
+### ProphesizeOnlyInterfaceTrait
+
+Prophecy shall be created only for (existing) interfaces.
+
 ## Example usage
 
 ```php
@@ -32,6 +36,7 @@ use PHPUnitGoodPractices\Traits\ExpectationViaCodeOverAnnotationTrait;
 use PHPUnitGoodPractices\Traits\ExpectOverSetExceptionTrait;
 use PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait;
+use PHPUnitGoodPractices\Traits\ProphesizeOnlyInterfaceTrait;
 
 final class FooTest extends TestCase
 {
@@ -39,6 +44,7 @@ final class FooTest extends TestCase
     use ExpectOverSetExceptionTrait;
     use IdentityOverEqualityTrait;
     use ProphecyOverMockObjectTrait;
+    use ProphesizeOnlyInterfaceTrait;
 
     public function testBar()
     {
