@@ -18,7 +18,8 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
 } elseif (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0') < 0) {
     trait ProphesizeOnlyInterfaceTrait
     {
-        protected function prophesize($classOrInterface = null) {
+        protected function prophesize($classOrInterface = null)
+        {
             if (!interface_exists($classOrInterface)) {
                 Reporter::report('Prophecy shall be created only for (existing) interfaces.');
             }

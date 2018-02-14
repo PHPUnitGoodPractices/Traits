@@ -15,7 +15,9 @@ use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Traits\ProphesizeOnlyInterfaceTrait;
 
-interface FixtureInterface {}
+interface FixtureInterface
+{
+}
 
 /**
  * @covers \PHPUnitGoodPractices\Traits\ProphesizeOnlyInterfaceTrait
