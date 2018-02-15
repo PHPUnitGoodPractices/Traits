@@ -25,6 +25,7 @@ interface FixtureInterface
 final class ProphesizeOnlyInterfaceTraitTest extends TestCase
 {
     use HelperTrait;
+    use PolyfillTrait;
     use ProphesizeOnlyInterfaceTrait;
 
     public function testProphecyOfInterface()
