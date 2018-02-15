@@ -12,7 +12,7 @@
 namespace PHPUnitGoodPractices\Traits;
 
 if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
-    trait ProphecyOverMockObjectTrait
+    trait ProphesizeOnlyInterfaceTrait
     {
     }
 } elseif (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0') < 0) {
