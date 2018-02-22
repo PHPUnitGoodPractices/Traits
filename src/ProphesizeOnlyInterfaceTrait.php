@@ -20,7 +20,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
     {
         protected function prophesize($classOrInterface = null)
         {
-            if (!interface_exists($classOrInterface)) {
+            if ($classOrInterface && !interface_exists($classOrInterface)) {
                 Reporter::report('Prophecy shall be created only for (existing) interfaces.');
             }
 

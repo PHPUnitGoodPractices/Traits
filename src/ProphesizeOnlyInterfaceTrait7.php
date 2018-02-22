@@ -15,7 +15,7 @@ trait ProphesizeOnlyInterfaceTrait7
 {
     protected function prophesize($classOrInterface = null): \Prophecy\Prophecy\ObjectProphecy
     {
-        if (!interface_exists($classOrInterface)) {
+        if ($classOrInterface && !interface_exists($classOrInterface)) {
             Reporter::report('Prophecy shall be created only for (existing) interfaces.');
         }
 
