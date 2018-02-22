@@ -30,13 +30,6 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
 } else {
     trait ProphesizeOnlyInterfaceTrait
     {
-        protected function prophesize($classOrInterface = null): \Prophecy\Prophecy\ObjectProphecy
-        {
-            if (!interface_exists($classOrInterface)) {
-                Reporter::report('Prophecy shall be created only for (existing) interfaces.');
-            }
-
-            return call_user_func_array(['parent', __FUNCTION__], func_get_args());
-        }
+        use ProphesizeOnlyInterfaceTrait7;
     }
 }
