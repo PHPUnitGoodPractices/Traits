@@ -23,36 +23,24 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
     use ExpectationViaCodeOverAnnotationTrait;
     use HelperTrait;
 
-    public function getName($withDataSet = true)
-    {
-        // partial mock for `testSetExpectedExceptionFromAnnotation` test
-        foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $trace) {
-            if (
-                'PHPUnitGoodPractices\Traits\Tests\ExpectationViaCodeOverAnnotationTraitTest' === $trace['class'] &&
-                'testSetExpectedExceptionFromAnnotation' === $trace['function']
-            ) {
-                return 'fixture';
-            }
-        }
-
-        return parent::getName($withDataSet);
-    }
-
     /**
      * @expectedException \Exception
      */
     public function fixture()
     {
+        throw new \Exception();
     }
 
     public function testSetExpectedExceptionFromAnnotation()
     {
+        $testClass = new self('fixture');
+
         $counter = 0;
         $customReporter = function () use (&$counter) { ++$counter; };
 
         Reporter::setCustomReporter($customReporter);
 
-        $this->setExpectedExceptionFromAnnotation();
+        $testClass->runBare();
 
         $this->assertSame(1, $counter);
 
