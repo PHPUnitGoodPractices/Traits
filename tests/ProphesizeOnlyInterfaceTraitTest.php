@@ -28,6 +28,14 @@ final class ProphesizeOnlyInterfaceTraitTest extends TestCase
     use PolyfillTrait;
     use ProphesizeOnlyInterfaceTrait;
 
+    public function testProphecyOfNothing()
+    {
+        $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
+
+        $this->prophesize();
+        $this->assertTrue(true);
+    }
+
     public function testProphecyOfInterface()
     {
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
