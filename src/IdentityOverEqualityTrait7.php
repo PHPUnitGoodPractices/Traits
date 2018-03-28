@@ -25,6 +25,7 @@ trait IdentityOverEqualityTrait7
             [
                 'assertJsonStringEqualsJsonString',
                 'assertSame',
+                'assertStringEqualsFile',
                 'assertXmlStringEqualsXmlString',
             ],
             true

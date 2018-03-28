@@ -32,6 +32,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
                 [
                     'assertJsonStringEqualsJsonString',
                     'assertSame',
+                    'assertStringEqualsFile',
                     'assertXmlStringEqualsXmlString',
                 ],
                 true

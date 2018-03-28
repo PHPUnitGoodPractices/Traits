@@ -207,4 +207,12 @@ final class IdentityOverEqualityTraitTest extends TestCase
             <report></report>',
         ], false);
     }
+
+    public function testAssertStringEqualsFile()
+    {
+        $this->assertAssertionExecution('assertStringEqualsFile', [
+            __FILE__,
+            file_get_contents(__FILE__),
+        ], false);
+    }
 }
