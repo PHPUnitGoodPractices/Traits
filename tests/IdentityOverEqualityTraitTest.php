@@ -44,6 +44,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
         $shouldFail = false;
 
         Reporter::setCustomReporter(function () {});
+
         try {
             call_user_func_array(['parent', $assertionMethod], $callArgs);
         } catch (ExpectationFailedException $e) {
@@ -51,6 +52,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
         }
 
         Reporter::setCustomReporter(function () use (&$crashed) { $crashed = true; });
+
         try {
             call_user_func_array([$this, $assertionMethod], $callArgs);
         } catch (ExpectationFailedException $e) {

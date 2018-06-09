@@ -57,7 +57,7 @@ final class Reporter
     public static function report($issue)
     {
         if (self::$useHeader) {
-            $issue = "PHPUnit good practice has been violated.\n$issue";
+            $issue = "PHPUnit good practice has been violated.\n${issue}";
         }
 
         $reporter = self::$customReporter ? self::$customReporter : self::getDefaultReporter();
