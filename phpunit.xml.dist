@@ -15,14 +15,14 @@
     stopOnFailure="false"
 >
     <testsuites>
-        <testsuite>
+        <testsuite name="all">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src</directory>>
+            <directory>./src</directory>
         </whitelist>
     </filter>
 </phpunit>
