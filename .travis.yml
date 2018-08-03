@@ -57,6 +57,7 @@ script:
     - ./run-tests.sh ~7.0.0 || travis_terminate 1
     - ./run-tests.sh ~7.1.0 || travis_terminate 1
     - ./run-tests.sh ~7.2.6 || travis_terminate 1
+    - ./run-tests.sh ~7.3.0 || travis_terminate 1
 
 jobs:
     include:
