@@ -19,6 +19,6 @@ trait ProphesizeOnlyInterfaceTrait7
             Reporter::report('Prophecy shall be created only for (existing) interfaces.');
         }
 
-        return call_user_func_array(['parent', __FUNCTION__], func_get_args());
+        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
     }
 }

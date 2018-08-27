@@ -22,7 +22,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.3') < 0) {
                 Reporter::report('Use `->expectExeption*()` methods instead of `->setExpectedException()`.');
             }
 
-            call_user_func_array(['parent', __FUNCTION__], func_get_args());
+            \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
         }
     }
 } elseif (version_compare(PHPUnitVersionRetriever::getVersion(), '6.0') < 0) {
@@ -36,7 +36,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.3') < 0) {
                 Reporter::report('Use `->expectExeption*()` methods instead of `->setExpectedException()`.');
             }
 
-            call_user_func_array(['parent', __FUNCTION__], func_get_args());
+            \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
         }
 
         public function setExpectedExceptionRegExp($exception, $message = '', $code = null)
@@ -47,7 +47,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.3') < 0) {
                 Reporter::report('Use `->expectExeption*()` methods instead of `->setExpectedExceptionRegExp()`.');
             }
 
-            call_user_func_array(['parent', __FUNCTION__], func_get_args());
+            \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
         }
     }
 } else {
