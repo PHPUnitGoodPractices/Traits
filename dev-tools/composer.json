@@ -3,8 +3,9 @@
         "php": "^7.0"
     },
     "require-dev": {
-        "mi-schi/phpmd-extension": "^4.2",
         "friendsofphp/php-cs-fixer": "^2.3",
+        "localheinz/composer-normalize": "^1.1",
+        "mi-schi/phpmd-extension": "^4.2",
         "phpmd/phpmd": "^2.4.3"
     },
     "conflict": {
