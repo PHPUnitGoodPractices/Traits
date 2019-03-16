@@ -15,7 +15,15 @@ echo -e "\e[46m§ Trying to execute tests under PHPUnit ${PHPUNIT}.\e[0m"
 rm -f composer.lock
 
 echo -e "\n\e[46m§ Installing deps...\e[0m"
+if [ ${PHPUNIT:1:1} == 8 ]
+then
+    composer require -q --dev --no-update friendsofphp/php-cs-fixer || return 0
+fi
 composer require -q --dev --no-update phpunit/phpunit:${PHPUNIT} && composer update -q $DEFAULT_COMPOSER_FLAGS && INSTALLED=1 || INSTALLED=0
+if [ $INSTALLED == 1 ] && [ ${PHPUNIT:1:1} == 8 ]
+then
+    PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/php-cs-fixer fix --rules=void_return -q tests
+fi
 git checkout composer.json
 
 if [ $INSTALLED == 0 ]
