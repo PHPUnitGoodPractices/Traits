@@ -18,6 +18,8 @@ use PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait;
 
 /**
  * @covers \PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait
+ *
+ * @internal
  */
 final class ProphecyOverMockObjectTraitTest extends TestCase
 {

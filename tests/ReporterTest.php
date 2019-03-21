@@ -18,12 +18,14 @@ use PHPUnitGoodPractices\Traits\Reporter;
 
 /**
  * @covers \PHPUnitGoodPractices\Traits\Reporter
+ *
+ * @internal
  */
 final class ReporterTest extends TestCase
 {
     use IdentityOverEqualityTrait;
 
-    public function tearDown()
+    protected function tearDown()
     {
         // reset global `Reporter` state
         Reporter::useHeader(true);
