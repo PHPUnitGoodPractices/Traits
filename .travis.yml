@@ -69,11 +69,13 @@ jobs:
             stage: Static code analysis
             php: 7.3
             install:
+                - travis_retry composer update $DEFAULT_COMPOSER_FLAGS
                 - travis_retry composer update -d dev-tools $DEFAULT_COMPOSER_FLAGS
                 - composer info -d dev-tools -D | sort
             script:
                 - ./check_trailing_spaces.sh || travis_terminate 1
                 - composer validate --strict || travis_terminate 1
                 - composer normalize -d ./dev-tools ./../composer.json --dry-run || travis_terminate 1
+                - ./dev-tools/vendor/bin/composer-require-checker check composer.json --config-file=.composer-require-checker.json || travis_terminate 1
                 - ./dev-tools/vendor/bin/phpmd src,tests text phpmd.xml || travis_terminate 1
                 - ./dev-tools/vendor/bin/php-cs-fixer fix --diff --dry-run -v || travis_terminate 1
