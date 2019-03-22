@@ -18,6 +18,8 @@ use PHPUnitGoodPractices\Traits\Reporter;
 
 /**
  * @covers \PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait
+ *
+ * @internal
  */
 final class IdentityOverEqualityTraitTest extends TestCase
 {
@@ -26,7 +28,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
     public $fixtureAttributeBool = true;
     public $fixtureAttributeInt = 123;
 
-    public function tearDown()
+    protected function tearDown()
     {
         Reporter::clearCustomReporter();
     }

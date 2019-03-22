@@ -15,6 +15,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversNothing
+ *
+ * @internal
  */
 final class AutoReviewTest extends TestCase
 {

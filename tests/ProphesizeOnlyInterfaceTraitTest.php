@@ -22,6 +22,8 @@ interface FixtureInterface
 
 /**
  * @covers \PHPUnitGoodPractices\Traits\ProphesizeOnlyInterfaceTrait
+ *
+ * @internal
  */
 final class ProphesizeOnlyInterfaceTraitTest extends TestCase
 {

@@ -17,6 +17,8 @@ use PHPUnitGoodPractices\Traits\Reporter;
 
 /**
  * @covers \PHPUnitGoodPractices\Traits\ExpectOverSetExceptionTrait
+ *
+ * @internal
  */
 final class ExpectOverSetExceptionTraitTest extends TestCase
 {
@@ -25,7 +27,7 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
 
     public $violations = [];
 
-    public function setUp()
+    protected function setUp()
     {
         $this->violations = [];
         $self = $this;
@@ -33,7 +35,7 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         Reporter::setCustomReporter($customReporter);
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         Reporter::clearCustomReporter();
     }

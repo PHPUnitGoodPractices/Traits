@@ -1,12 +1,12 @@
 {
     "require": {
-        "php": "^7.0"
+        "php": "^7.3"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.3",
+        "friendsofphp/php-cs-fixer": "^2.14",
         "localheinz/composer-normalize": "^1.1",
-        "mi-schi/phpmd-extension": "^4.2",
-        "phpmd/phpmd": "^2.4.3"
+        "mi-schi/phpmd-extension": "^4.3",
+        "phpmd/phpmd": "^2.6"
     },
     "conflict": {
         "hhvm": "*"
