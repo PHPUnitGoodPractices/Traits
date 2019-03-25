@@ -1,0 +1,11 @@
+{
+    "symbol-whitelist": [
+        "PHPUnit_Util_Test",
+        "PHPUnit_Runner_Version",
+        "Prophecy\\Prophecy\\ObjectProphecy",
+
+        "null", "true", "false",
+        "static", "self", "parent",
+        "array", "string", "int", "float", "bool", "iterable", "callable", "void"
+    ]
+}
