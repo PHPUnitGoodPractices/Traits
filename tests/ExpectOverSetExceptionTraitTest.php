@@ -45,8 +45,8 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedException');
 
         $this->setExpectedException(null);
-        $this->assertCount(1, $this->violations);
-        $this->assertRegExp('/.*null.*/', $this->violations[0]);
+        static::assertCount(1, $this->violations);
+        static::assertRegExp('/.*null.*/', $this->violations[0]);
     }
 
     public function testSetExpectedExceptionRegExpWithNull()
@@ -54,8 +54,8 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedExceptionRegExp');
 
         $this->setExpectedExceptionRegExp(null);
-        $this->assertCount(1, $this->violations);
-        $this->assertRegExp('/.*null.*/', $this->violations[0]);
+        static::assertCount(1, $this->violations);
+        static::assertRegExp('/.*null.*/', $this->violations[0]);
     }
 
     public function testSetExpectedException()
@@ -64,8 +64,8 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
 
         $this->setExpectedException(\Exception::class);
-        $this->assertCount(1, $this->violations);
-        $this->assertRegExp('/.*expectExeption.*/', $this->violations[0]);
+        static::assertCount(1, $this->violations);
+        static::assertRegExp('/.*expectExeption.*/', $this->violations[0]);
 
         throw new \Exception();
     }
@@ -76,8 +76,8 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('expectException');
 
         $this->setExpectedExceptionRegExp(\Exception::class, '/.*/');
-        $this->assertCount(1, $this->violations);
-        $this->assertRegExp('/.*expectExeption.*/', $this->violations[0]);
+        static::assertCount(1, $this->violations);
+        static::assertRegExp('/.*expectExeption.*/', $this->violations[0]);
 
         throw new \Exception();
     }

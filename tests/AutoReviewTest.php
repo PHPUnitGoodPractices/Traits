@@ -26,7 +26,7 @@ final class AutoReviewTest extends TestCase
         $yaml = file_get_contents(__DIR__.'/../.travis.yml', FILE_IGNORE_NEW_LINES);
         preg_match_all('/run-tests\.sh (\S+)/', $yaml, $matches);
 
-        $this->assertSame(
+        static::assertSame(
             implode(' || ', $matches[1]),
             $json['require']['phpunit/phpunit']
         );

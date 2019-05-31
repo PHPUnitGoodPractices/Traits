@@ -51,7 +51,7 @@ final class ProphecyOverMockObjectTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodExists('prophesize');
 
         $this->createMock('Exception');
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testGetMockClassWorksWhenNoProphecy()
@@ -60,6 +60,6 @@ final class ProphecyOverMockObjectTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodExists('prophesize');
 
         $this->getMockClass('Exception');
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 }

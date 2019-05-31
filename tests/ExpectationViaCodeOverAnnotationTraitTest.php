@@ -44,7 +44,7 @@ final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
 
         $testClass->runBare();
 
-        $this->assertSame(1, $counter);
+        static::assertSame(1, $counter);
 
         Reporter::clearCustomReporter();
     }
