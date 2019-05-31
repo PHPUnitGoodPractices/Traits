@@ -61,8 +61,8 @@ final class IdentityOverEqualityTraitTest extends TestCase
             $failed = true;
         }
 
-        $this->assertSame($shouldCrash, $crashed, sprintf('Expect to %scrash.', $shouldCrash ? '' : 'NOT '));
-        $this->assertSame($shouldFail, $failed, sprintf('Expect to %sfail.', $shouldFail ? '' : 'NOT '));
+        static::assertSame($shouldCrash, $crashed, sprintf('Expect to %scrash.', $shouldCrash ? '' : 'NOT '));
+        static::assertSame($shouldFail, $failed, sprintf('Expect to %sfail.', $shouldFail ? '' : 'NOT '));
     }
 
     /**

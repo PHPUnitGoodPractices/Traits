@@ -36,7 +36,7 @@ final class ProphesizeOnlyInterfaceTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
 
         $this->prophesize();
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testProphecyOfInterface()
@@ -44,7 +44,7 @@ final class ProphesizeOnlyInterfaceTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
 
         $this->prophesize(FixtureInterface::class);
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testProphecyOfClass()

@@ -69,7 +69,7 @@ final class ReporterTest extends TestCase
 
         Reporter::setCustomReporter($customReporter);
         Reporter::report('Foo.');
-        $this->assertSame(1, $counter); // custom reporter shall be triggered
+        static::assertSame(1, $counter); // custom reporter shall be triggered
     }
 
     public function testReportAfterClearingCustomReporter()
@@ -96,6 +96,6 @@ final class ReporterTest extends TestCase
             $this->setExpectedException(Warning::class);
         }
 
-        $this->assertEquals(1, 1);
+        static::assertEquals(1, 1);
     }
 }
