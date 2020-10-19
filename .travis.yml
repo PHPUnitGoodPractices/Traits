@@ -16,6 +16,7 @@ php:
     - 7.1
     - 7.2
     - 7.3
+    - 7.4
     - nightly
 
 env:
@@ -76,6 +77,7 @@ jobs:
                 - ./check_trailing_spaces.sh || travis_terminate 1
                 - composer validate --strict || travis_terminate 1
                 - composer normalize -d ./dev-tools ./../composer.json --dry-run || travis_terminate 1
-                - ./dev-tools/vendor/bin/composer-require-checker check composer.json --config-file=.composer-require-checker.json || travis_terminate 1
+                # disabled due to PHPUnit issues: https://github.com/sebastianbergmann/phpunit/issues/4450
+                # - ./dev-tools/vendor/bin/composer-require-checker check composer.json --config-file=.composer-require-checker.json || travis_terminate 1
                 - ./dev-tools/vendor/bin/phpmd src,tests text phpmd.xml || travis_terminate 1
                 - ./dev-tools/vendor/bin/php-cs-fixer fix --diff --dry-run -v || travis_terminate 1
