@@ -44,9 +44,14 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
             // no need to call parent method if $expectedException is empty
         }
     }
-} else {
+} elseif (version_compare(PHPUnitVersionRetriever::getVersion(), '9.0.0') < 0) {
     trait ExpectationViaCodeOverAnnotationTrait
     {
         use ExpectationViaCodeOverAnnotationTrait7;
+    }
+} else {
+    trait ExpectationViaCodeOverAnnotationTrait
+    {
+        // removed from PHPUnit, PHPUnit will crash on it's own
     }
 }

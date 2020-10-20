@@ -11,7 +11,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Framework\Error\Warning;
 use PHPUnitGoodPractices\Polyfill\PolyfillTrait;
 use PHPUnitGoodPractices\Traits\ProphecyOverMockObjectTrait;
 
@@ -31,7 +30,7 @@ final class ProphecyOverMockObjectTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('createMock');
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
 
-        $this->expectException(Warning::class);
+        $this->expectWarningWithFallback();
         $this->createMock('Exception');
     }
 
@@ -40,7 +39,7 @@ final class ProphecyOverMockObjectTraitTest extends TestCase
         $this->markTestSkippedIfPHPUnitMethodIsMissing('getMockClass');
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
 
-        $this->expectException(Warning::class);
+        $this->expectWarningWithFallback();
         $this->getMockClass('Exception');
     }
 

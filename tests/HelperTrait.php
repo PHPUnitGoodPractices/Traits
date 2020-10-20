@@ -11,6 +11,7 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
+use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Runner\Version;
 
 /**
@@ -18,6 +19,23 @@ use PHPUnit\Runner\Version;
  */
 trait HelperTrait
 {
+    public function expectWarningWithFallback($expectedMessage = null)
+    {
+        if (\is_callable([$this, 'expectWarning'])) {
+            $this->expectWarning();
+            if ($expectedMessage) {
+                $this->expectWarningMessage($expectedMessage);
+            }
+        } elseif (\is_callable([$this, 'expectException'])) {
+            $this->expectException(Warning::class);
+            if ($expectedMessage) {
+                $this->expectExceptionMessage($expectedMessage);
+            }
+        } else {
+            $this->setExpectedException(Warning::class, $expectedMessage);
+        }
+    }
+
     public function markTestSkippedIfPHPUnitMethodIsMissing($method)
     {
         if (!\is_callable([$this, $method])) {

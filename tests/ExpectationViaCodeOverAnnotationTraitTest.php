@@ -18,6 +18,7 @@ use PHPUnitGoodPractices\Traits\Reporter;
  * @covers \PHPUnitGoodPractices\Traits\ExpectationViaCodeOverAnnotationTrait
  *
  * @internal
+ * @requires PHPUnit < 9
  */
 final class ExpectationViaCodeOverAnnotationTraitTest extends TestCase
 {
