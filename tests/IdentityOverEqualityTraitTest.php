@@ -12,7 +12,6 @@
 namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Traits\Reporter;
 
@@ -28,7 +27,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
     public $fixtureAttributeBool = true;
     public $fixtureAttributeInt = 123;
 
-    protected function tearDown()
+    protected function legacyTearDown()
     {
         Reporter::clearCustomReporter();
     }

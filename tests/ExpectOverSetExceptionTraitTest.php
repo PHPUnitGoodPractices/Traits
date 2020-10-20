@@ -11,7 +11,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Traits\ExpectOverSetExceptionTrait;
 use PHPUnitGoodPractices\Traits\Reporter;
 
@@ -27,7 +26,7 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
 
     public $violations = [];
 
-    protected function setUp()
+    protected function legacySetUp()
     {
         $this->violations = [];
         $self = $this;
@@ -35,7 +34,7 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         Reporter::setCustomReporter($customReporter);
     }
 
-    protected function tearDown()
+    protected function legacyTearDown()
     {
         Reporter::clearCustomReporter();
     }
