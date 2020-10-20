@@ -11,8 +11,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @coversNothing
  *

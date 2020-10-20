@@ -12,7 +12,6 @@
 namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\Error\Warning;
-use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Traits\Reporter;
 
@@ -24,13 +23,6 @@ use PHPUnitGoodPractices\Traits\Reporter;
 final class ReporterTest extends TestCase
 {
     use IdentityOverEqualityTrait;
-
-    protected function tearDown()
-    {
-        // reset global `Reporter` state
-        Reporter::useHeader(true);
-        Reporter::clearCustomReporter();
-    }
 
     public function testReportWithDefaults()
     {
@@ -97,5 +89,12 @@ final class ReporterTest extends TestCase
         }
 
         static::assertEquals(1, 1);
+    }
+
+    protected function legacyTearDown()
+    {
+        // reset global `Reporter` state
+        Reporter::useHeader(true);
+        Reporter::clearCustomReporter();
     }
 }

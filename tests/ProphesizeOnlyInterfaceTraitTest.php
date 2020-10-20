@@ -12,7 +12,6 @@
 namespace PHPUnitGoodPractices\Traits\Tests;
 
 use PHPUnit\Framework\Error\Warning;
-use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Polyfill\PolyfillTrait;
 use PHPUnitGoodPractices\Traits\ProphesizeOnlyInterfaceTrait;
 

@@ -11,7 +11,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnitGoodPractices\Traits\ExpectationViaCodeOverAnnotationTrait;
 use PHPUnitGoodPractices\Traits\Reporter;
 
