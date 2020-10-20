@@ -11,7 +11,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Framework\Error\Warning;
 use PHPUnitGoodPractices\Polyfill\PolyfillTrait;
 use PHPUnitGoodPractices\Traits\ProphesizeOnlyInterfaceTrait;
 
@@ -50,7 +49,7 @@ final class ProphesizeOnlyInterfaceTraitTest extends TestCase
     {
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
 
-        $this->expectException(Warning::class);
+        $this->expectWarningWithFallback();
         $this->prophesize('Exception');
     }
 
@@ -58,7 +57,7 @@ final class ProphesizeOnlyInterfaceTraitTest extends TestCase
     {
         $this->markTestSkippedIfPHPUnitMethodIsMissing('prophesize');
 
-        $this->expectException(Warning::class);
+        $this->expectWarningWithFallback();
         $this->prophesize('FooBarBaz');
     }
 }

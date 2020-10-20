@@ -11,7 +11,6 @@
 
 namespace PHPUnitGoodPractices\Traits\Tests;
 
-use PHPUnit\Framework\Error\Warning;
 use PHPUnitGoodPractices\Traits\IdentityOverEqualityTrait;
 use PHPUnitGoodPractices\Traits\Reporter;
 
@@ -23,17 +22,13 @@ use PHPUnitGoodPractices\Traits\Reporter;
 final class ReporterTest extends TestCase
 {
     use IdentityOverEqualityTrait;
+    use HelperTrait;
 
     public function testReportWithDefaults()
     {
         $expectedMessage = "PHPUnit good practice has been violated.\nFoo.";
 
-        if (\is_callable([$this, 'expectException'])) {
-            $this->expectException(Warning::class);
-            $this->expectExceptionMessage($expectedMessage);
-        } else {
-            $this->setExpectedException(Warning::class, $expectedMessage);
-        }
+        $this->expectWarningWithFallback($expectedMessage);
 
         Reporter::report('Foo.');
     }
@@ -44,12 +39,7 @@ final class ReporterTest extends TestCase
 
         $expectedMessage = 'Foo.';
 
-        if (\is_callable([$this, 'expectException'])) {
-            $this->expectException(Warning::class);
-            $this->expectExceptionMessage($expectedMessage);
-        } else {
-            $this->setExpectedException(Warning::class, $expectedMessage);
-        }
+        $this->expectWarningWithFallback($expectedMessage);
 
         Reporter::report('Foo.');
     }
@@ -72,21 +62,13 @@ final class ReporterTest extends TestCase
         Reporter::report('Foo.');
 
         Reporter::clearCustomReporter();
-        if (\is_callable([$this, 'expectException'])) {
-            $this->expectException(Warning::class);
-        } else {
-            $this->setExpectedException(Warning::class);
-        }
+        $this->expectWarningWithFallback();
         Reporter::report('Foo.');
     }
 
     public function testObservedAssertionCrashesTestExecutionWhileUsingDefaultReporter()
     {
-        if (\is_callable([$this, 'expectException'])) {
-            $this->expectException(Warning::class);
-        } else {
-            $this->setExpectedException(Warning::class);
-        }
+        $this->expectWarningWithFallback();
 
         static::assertEquals(1, 1);
     }

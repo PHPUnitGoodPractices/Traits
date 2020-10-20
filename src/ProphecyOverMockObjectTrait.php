@@ -150,9 +150,14 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
             return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
         }
     }
-} else {
+} elseif (version_compare(PHPUnitVersionRetriever::getVersion(), '9.0.0') < 0) {
     trait ProphecyOverMockObjectTrait
     {
         use ProphecyOverMockObjectTrait7;
+    }
+} else {
+    trait ProphecyOverMockObjectTrait
+    {
+        use ProphecyOverMockObjectTrait9;
     }
 }
