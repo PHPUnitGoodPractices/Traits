@@ -24,13 +24,6 @@ final class ReporterTest extends TestCase
 {
     use IdentityOverEqualityTrait;
 
-    protected function legacyTearDown()
-    {
-        // reset global `Reporter` state
-        Reporter::useHeader(true);
-        Reporter::clearCustomReporter();
-    }
-
     public function testReportWithDefaults()
     {
         $expectedMessage = "PHPUnit good practice has been violated.\nFoo.";
@@ -96,5 +89,12 @@ final class ReporterTest extends TestCase
         }
 
         static::assertEquals(1, 1);
+    }
+
+    protected function legacyTearDown()
+    {
+        // reset global `Reporter` state
+        Reporter::useHeader(true);
+        Reporter::clearCustomReporter();
     }
 }

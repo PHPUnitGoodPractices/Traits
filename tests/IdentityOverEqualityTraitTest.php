@@ -27,11 +27,6 @@ final class IdentityOverEqualityTraitTest extends TestCase
     public $fixtureAttributeBool = true;
     public $fixtureAttributeInt = 123;
 
-    protected function legacyTearDown()
-    {
-        Reporter::clearCustomReporter();
-    }
-
     /**
      * @param string  $assertionMethod
      * @param mixed[] $callArgs
@@ -217,5 +212,10 @@ final class IdentityOverEqualityTraitTest extends TestCase
             __FILE__,
             file_get_contents(__FILE__),
         ], false);
+    }
+
+    protected function legacyTearDown()
+    {
+        Reporter::clearCustomReporter();
     }
 }

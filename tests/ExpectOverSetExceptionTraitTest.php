@@ -26,19 +26,6 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
 
     public $violations = [];
 
-    protected function legacySetUp()
-    {
-        $this->violations = [];
-        $self = $this;
-        $customReporter = function ($issue) use ($self) { $self->violations[] = $issue; };
-        Reporter::setCustomReporter($customReporter);
-    }
-
-    protected function legacyTearDown()
-    {
-        Reporter::clearCustomReporter();
-    }
-
     public function testSetExpectedExceptionWithNull()
     {
         $this->markTestSkippedIfPHPUnitMethodIsMissing('setExpectedException');
@@ -79,5 +66,18 @@ final class ExpectOverSetExceptionTraitTest extends TestCase
         static::assertRegExp('/.*expectExeption.*/', $this->violations[0]);
 
         throw new \Exception();
+    }
+
+    protected function legacySetUp()
+    {
+        $this->violations = [];
+        $self = $this;
+        $customReporter = function ($issue) use ($self) { $self->violations[] = $issue; };
+        Reporter::setCustomReporter($customReporter);
+    }
+
+    protected function legacyTearDown()
+    {
+        Reporter::clearCustomReporter();
     }
 }
