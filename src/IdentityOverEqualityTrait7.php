@@ -33,7 +33,7 @@ trait IdentityOverEqualityTrait7
             Reporter::report('Use `->assertSame()` instead of `->assertEquals()`.');
         }
 
-        \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     public static function assertNotEquals($expected, $actual, string $message = '', $delta = 0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false): void
@@ -45,7 +45,7 @@ trait IdentityOverEqualityTrait7
             Reporter::report('Use `->assertNotSame()` instead of `->assertNotEquals()`.');
         }
 
-        \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     public static function assertAttributeEquals($expected, string $actualAttributeName, $actualClassOrObject, string $message = '', float $delta = 0, int $maxDepth = 10, bool $canonicalize = false, bool $ignoreCase = false): void

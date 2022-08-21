@@ -24,7 +24,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '4.5') < 0) {
                 Reporter::report('Prophecy shall be created only for (existing) interfaces.');
             }
 
-            return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+            return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
         }
     }
 } else {
