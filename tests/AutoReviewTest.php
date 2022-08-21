@@ -32,7 +32,7 @@ final class AutoReviewTest extends TestCase
         foreach (explode(' || ', $requirements) as $version) {
             preg_match('/^[\^~](\d+)\.\d+(?:\.\d+)?$/', $version, $match);
 
-            self::assertContains(
+            static::assertContains(
                 $majorVersion = $match[1],
                 $testedVersions,
                 "PHPUnit {$majorVersion} is allowed in composer.json, but not present in the test matrix at .github/workflows/ci.yml."
