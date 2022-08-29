@@ -1,0 +1,55 @@
+name: Static Code Analysis
+
+on:
+  - pull_request
+  - push
+
+jobs:
+  tests:
+    name: Static Code Analysis
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: dev-tools-${{ hashFiles('dev-tools/composer.*') }}
+          restore-keys: |
+            dev-tools-
+
+      - name: Install dev tools
+        run: |
+          composer update --optimize-autoloader --no-interaction --no-progress -d dev-tools
+
+      - name: Check - trailing spaces
+        run: ./dev-tools/check_trailing_spaces.sh
+
+      - name: Check - composer validate
+        run: composer validate --strict
+
+      - name: Check - composer normalize
+        run: composer normalize --dry-run --working-dir=./dev-tools composer.json
+
+      - name: Check - composer-require-checker
+        run: ./dev-tools/vendor/bin/composer-require-checker check composer.json --config-file .composer-require-checker.json
+        continue-on-error: true
+
+      - name: Check - phpmd
+        run: ./dev-tools/vendor/bin/phpmd src,tests text phpmd.xml
+
+      - name: Check - PhpCsFixer
+        run: ./dev-tools/vendor/bin/php-cs-fixer fix --diff --dry-run -v

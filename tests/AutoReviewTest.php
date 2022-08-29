@@ -20,13 +20,23 @@ final class AutoReviewTest extends TestCase
 {
     public function testThatThereIsProperPHPUnitInComposer()
     {
-        $json = json_decode(file_get_contents(__DIR__.'/../composer.json'), true);
-        $yaml = file_get_contents(__DIR__.'/../.travis.yml', FILE_IGNORE_NEW_LINES);
-        preg_match_all('/run-tests\.sh (\S+)/', $yaml, $matches);
+        $requirements = file_get_contents(__DIR__.'/../composer.json');
+        $requirements = json_decode($requirements, true)['require']['phpunit/phpunit'];
 
-        static::assertSame(
-            implode(' || ', $matches[1]),
-            $json['require']['phpunit/phpunit']
-        );
+        $yml = file_get_contents(__DIR__.'/../.github/workflows/ci.yml');
+
+        preg_match_all('/phpunit-version: (\S+)/', $yml, $matches);
+
+        $testedVersions = array_unique($matches[1]);
+
+        foreach (explode(' || ', $requirements) as $version) {
+            preg_match('/^[\^~](\d+)\.\d+(?:\.\d+)?$/', $version, $match);
+
+            static::assertContains(
+                $majorVersion = $match[1],
+                $testedVersions,
+                "PHPUnit {$majorVersion} is allowed in composer.json, but not present in the test matrix at .github/workflows/ci.yml."
+            );
+        }
     }
 }
