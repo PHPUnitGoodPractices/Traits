@@ -60,7 +60,7 @@ final class Reporter
             $issue = "PHPUnit good practice has been violated.\n{$issue}";
         }
 
-        $reporter = self::$customReporter ? self::$customReporter : self::getDefaultReporter();
+        $reporter = self::$customReporter ?: self::getDefaultReporter();
         $reporter($issue);
     }
 

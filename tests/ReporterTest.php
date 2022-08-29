@@ -21,8 +21,8 @@ use PHPUnitGoodPractices\Traits\Reporter;
  */
 final class ReporterTest extends TestCase
 {
-    use IdentityOverEqualityTrait;
     use HelperTrait;
+    use IdentityOverEqualityTrait;
 
     public function testReportWithDefaults()
     {

@@ -12,7 +12,7 @@
 if (
     \PHP_VERSION_ID >= 70200 && version_compare(PHPUnit\Runner\Version::id(), '4.1') < 0
 ) {
-    die(sprintf(
+    exit(sprintf(
         "\e[45mPHPUnit %s: Is not compatible with PHP %s.\e[0m",
         PHPUnit\Runner\Version::id(),
         PHP_VERSION
