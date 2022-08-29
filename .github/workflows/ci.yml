@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  - pull_request
+  - push
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - phpunit-version: 4
+            php-version: '5.5'
+          - phpunit-version: 4
+            php-version: '5.6'
+          - phpunit-version: 5
+            php-version: '5.6'
+          - phpunit-version: 5
+            php-version: '7.0'
+          - phpunit-version: 5
+            php-version: '7.1'
+          - phpunit-version: 6
+            php-version: '7.0'
+          - phpunit-version: 6
+            php-version: '7.1'
+          - phpunit-version: 6
+            php-version: '7.2'
+          - phpunit-version: 7
+            php-version: '7.1'
+          - phpunit-version: 7
+            php-version: '7.2'
+          - phpunit-version: 7
+            php-version: '7.3'
+          - phpunit-version: 8
+            php-version: '7.2'
+          - phpunit-version: 8
+            php-version: '7.3'
+          - phpunit-version: 8
+            php-version: '7.4'
+          - phpunit-version: 8
+            php-version: '8.0'
+          - phpunit-version: 8
+            php-version: '8.1'
+          - phpunit-version: 9
+            php-version: '7.3'
+          - phpunit-version: 9
+            php-version: '7.4'
+          - phpunit-version: 9
+            php-version: '8.0'
+          - phpunit-version: 9
+            php-version: '8.1'
+
+    name: PHPUnit ${{ matrix.phpunit-version }} on PHP ${{ matrix.php-version }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ matrix.php-version }}-${{ hashFiles('composer.*') }}
+          restore-keys: |
+            composer-${{ matrix.php-version }}-
+            composer-
+
+      - name: Install dependencies
+        run: |
+          composer update --optimize-autoloader --no-interaction --no-progress ${{ matrix.composer-flags }}
+          composer update phpunit/phpunit:^${{ matrix.phpunit-version }} sanmai/phpunit-legacy-adapter --with-all-dependencies ${{ matrix.composer-flags }}
+
+      - name: Run tests
+        run: vendor/bin/phpunit
