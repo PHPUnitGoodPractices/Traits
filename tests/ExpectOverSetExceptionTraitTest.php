@@ -21,8 +21,8 @@ use PHPUnitGoodPractices\Traits\Reporter;
  */
 final class ExpectOverSetExceptionTraitTest extends TestCase
 {
-    use HelperTrait;
     use ExpectOverSetExceptionTrait;
+    use HelperTrait;
 
     public $violations = [];
 
