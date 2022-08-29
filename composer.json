@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^5.5 || ^7.0 || ^8.0",
-        "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ~8.5 || ~9.4"
+        "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ~8.5 || ~9.4.0"
     },
     "require-dev": {
         "phpunitgoodpractices/polyfill": "^1.1",

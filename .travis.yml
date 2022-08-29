@@ -42,7 +42,7 @@ script:
     - ./run-tests.sh ^6.5.14 || travis_terminate 1
     - ./run-tests.sh ^7.5.20 || travis_terminate 1
     - ./run-tests.sh ~8.5 || travis_terminate 1
-    - ./run-tests.sh ~9.4 || travis_terminate 1
+    - ./run-tests.sh ~9.4.0 || travis_terminate 1
 
 jobs:
     include:
