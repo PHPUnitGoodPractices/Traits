@@ -19,41 +19,41 @@ trait ProphecyOverMockObjectTrait9
     {
         Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 
-        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     protected function getMockClass($originalClassName, $methods = [], array $arguments = [], $mockClassName = '', $callOriginalConstructor = false, $callOriginalClone = true, $callAutoload = true, $cloneArguments = false): string
     {
         Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 
-        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     protected function getMockForAbstractClass($originalClassName, array $arguments = [], $mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true, $mockedMethods = [], $cloneArguments = false): \PHPUnit\Framework\MockObject\MockObject
     {
         Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 
-        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     protected function getMockFromWsdl($wsdlFile, $originalClassName = '', $mockClassName = '', array $methods = [], $callOriginalConstructor = true, array $options = []): \PHPUnit\Framework\MockObject\MockObject
     {
         Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 
-        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     protected function ggetMockForTrait($traitName, array $arguments = [], $mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true, $mockedMethods = [], $cloneArguments = false): \PHPUnit\Framework\MockObject\MockObject
     {
         Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 
-        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 
     protected function getObjectForTrait($traitName, array $arguments = [], $traitClassName = '', $callOriginalConstructor = true, $callOriginalClone = true, $callAutoload = true): object
     {
         Reporter::report('Use `Prophecy` instead of basic `MockObject`.');
 
-        return \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+        return \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
     }
 }

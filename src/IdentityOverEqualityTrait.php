@@ -40,7 +40,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
                 Reporter::report('Use `->assertSame()` instead of `->assertEquals()`.');
             }
 
-            \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+            \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
         }
 
         public static function assertNotEquals($expected, $actual, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
@@ -52,7 +52,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
                 Reporter::report('Use `->assertNotSame()` instead of `->assertNotEquals()`.');
             }
 
-            \call_user_func_array(['parent', __FUNCTION__], \func_get_args());
+            \call_user_func_array([parent::class, __FUNCTION__], \func_get_args());
         }
 
         public static function assertAttributeEquals($expected, $actualAttributeName, $actualClassOrObject, $message = '', $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
