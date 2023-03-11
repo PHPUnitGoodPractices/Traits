@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace PHPUnitGoodPractices\Traits;
 
 use PHPUnit\Util\Test;
-use PHPUnit_Util_Test;
 
 trait ExpectationViaCodeOverAnnotationTrait7
 {
@@ -26,7 +25,7 @@ trait ExpectationViaCodeOverAnnotationTrait7
                 $this->getName(false)
             );
         } else {
-            $expectedException = PHPUnit_Util_Test::getExpectedException(
+            $expectedException = \PHPUnit_Util_Test::getExpectedException(
                 static::class,
                 $this->getName(false)
             );

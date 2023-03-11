@@ -130,6 +130,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      * @param mixed  $expected
      *
      * @dataProvider provideAssertAttributeSameCases
+     *
      * @requires PHPUnit < 9
      */
     public function testAssertAttributeSame($attribute, $expected)
@@ -142,6 +143,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      * @param mixed  $expected
      *
      * @dataProvider provideAssertAttributeSameCases
+     *
      * @requires PHPUnit < 9
      */
     public function testAssertAttributeNotSame($attribute, $expected)
@@ -164,6 +166,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      * @param mixed  $expected
      *
      * @dataProvider provideAssertAttributeEqualsCases
+     *
      * @requires PHPUnit < 9
      */
     public function testAssertAttributeEquals($attribute, $expected)
@@ -176,6 +179,7 @@ final class IdentityOverEqualityTraitTest extends TestCase
      * @param mixed  $expected
      *
      * @dataProvider provideAssertAttributeEqualsCases
+     *
      * @requires PHPUnit < 9
      */
     public function testAssertAttributeNotEquals($attribute, $expected)
