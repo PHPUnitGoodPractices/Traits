@@ -12,7 +12,6 @@
 namespace PHPUnitGoodPractices\Traits;
 
 use PHPUnit\Util\Test;
-use PHPUnit_Util_Test;
 
 /*
  * Expected exception shall be set up via code, not annotations.
@@ -30,7 +29,7 @@ if (version_compare(PHPUnitVersionRetriever::getVersion(), '7.0.0') < 0) {
                     $this->getName(false)
                 );
             } else {
-                $expectedException = PHPUnit_Util_Test::getExpectedException(
+                $expectedException = \PHPUnit_Util_Test::getExpectedException(
                     static::class,
                     $this->getName(false)
                 );

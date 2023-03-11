@@ -16,12 +16,12 @@ use Closure;
 final class Reporter
 {
     /**
-     * @var ?Closure
+     * @var ?\Closure
      */
     private static $customReporter;
 
     /**
-     * @var Closure
+     * @var \Closure
      */
     private static $defaultReporter;
 
@@ -33,7 +33,7 @@ final class Reporter
     /**
      * @param $reporter Closure
      */
-    public static function setCustomReporter(Closure $reporter)
+    public static function setCustomReporter(\Closure $reporter)
     {
         self::$customReporter = $reporter;
     }
@@ -65,7 +65,7 @@ final class Reporter
     }
 
     /**
-     * @return Closure
+     * @return \Closure
      */
     private static function getDefaultReporter()
     {
