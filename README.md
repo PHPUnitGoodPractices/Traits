@@ -1,3 +1,7 @@
+# ❗ THIS PACKAGE IS DEPRECATED ❗
+
+With great shape of PHPUnit itself and Static Code Analysers supporting it, this package is no longer needed.
+
 # PHPUnit Good Practices
 
 Highly opinionated PHPUnit good practices enforcer.
